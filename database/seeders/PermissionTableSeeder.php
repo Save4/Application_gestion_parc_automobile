@@ -27,6 +27,10 @@ class PermissionTableSeeder extends Seeder
             'marque-create',
             'marque-edit',
             'marque-delete',
+            'modele-list',
+            'modele-create',
+            'modele-edit',
+            'modele-delete',
         ];
 
         foreach ($permissions as $permission) {
