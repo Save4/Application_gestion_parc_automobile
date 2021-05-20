@@ -11,7 +11,7 @@
                             <h4 style="float: left">Ajouter la marque</h4>
                             <a href="" style="float: right" class="btn btn-primary" data-toggle="modal"
                                 data-target="#addmarque">
-                                <i class="fa fa-plus"></i>Ajout d'unite</a>
+                                <i class="fa fa-plus"></i>Ajouter la marque</a>
                         </div>
                         @error('nom_marque')
                             <div class="alert alert-danger alert-dismissible" role="alert">
