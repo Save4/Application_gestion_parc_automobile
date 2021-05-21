@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Marque;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class MarqueController extends Controller
+class CategoryController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:marque-list|marque-create|marque-edit|marque-delete', ['only' => ['index', 'show']]);
-        $this->middleware('permission:marque-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:marque-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:marque-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:category-list|category-create|category-edit|category-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:category-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:category-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:category-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class MarqueController extends Controller
      */
     public function index()
     {
-        $marques = Marque::all();
-        return view('marques.index', ['marques' => $marques]);
+        $categories = Category::all();
+        return view('categories.index', ['categories' => $categories]);
     }
 
     /**
@@ -44,19 +44,19 @@ class MarqueController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nom_marque' => ['required',  'max:255', 'string', 'unique:marques,nom_marque']
+            'nom_category' => ['required',  'max:255', 'string', 'unique:categories,nom_category']
         ]);
-        Marque::create($request->all());
+        Category::create($request->all());
         return redirect()->back()->with('status', 'Enregistrement reussie avec succees!!!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Marque  $marque
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Marque $marque)
+    public function show(Category $category)
     {
         //
     }
@@ -64,10 +64,10 @@ class MarqueController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Marque  $marque
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Marque $marque)
+    public function edit(Category $category)
     {
         //
     }
@@ -76,27 +76,27 @@ class MarqueController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Marque  $marque
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Marque $marque)
+    public function update(Request $request, Category $category)
     {
         $request->validate([
-            'nom_marque' => ['required',  'max:255', 'string', 'unique:marques,nom_marque']
+            'nom_category' => ['required',  'max:255', 'string', 'unique:categories,nom_category']
         ]);
-        $marque->update($request->all());
+        $category->update($request->all());
         return redirect()->back()->with('status', 'Modification reussie avec succees!!!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Marque  $marque
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Marque $marque)
+    public function destroy(Category $category)
     {
-        $marque->delete();
+        $category->delete();
         return redirect()->back()->with('status','Suppression reussie avec succees!!!');
     }
 }
