@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\ModeleController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', UserController::class);
     Route::resource('marques', MarqueController::class);
     Route::resource('modeles', ModeleController::class);
+    Route::resource('categories', CategoryController::class);
 });
