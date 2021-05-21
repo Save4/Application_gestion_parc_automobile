@@ -85,7 +85,7 @@ class MarqueController extends Controller
             'nom_marque' => ['required',  'max:255', 'string', 'unique:marques,nom_marque']
         ]);
         $marque->update($request->all());
-        return redirect()->back()->with('success', 'Modification reussie avec succees!!!');
+        return redirect()->back()->with('status', 'Modification reussie avec succees!!!');
     }
 
     /**
@@ -97,6 +97,6 @@ class MarqueController extends Controller
     public function destroy(Marque $marque)
     {
         $marque->delete();
-        return redirect()->back()->with('success','Suppression reussie avec succees!!!');
+        return redirect()->back()->with('status','Suppression reussie avec succees!!!');
     }
 }
