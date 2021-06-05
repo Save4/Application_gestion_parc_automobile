@@ -7,6 +7,11 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>@yield('title',config('app.name'))</title>
+    <script defer>
+        let route = "{{ URL::to('/') }}";
+
+    </script>
+    <script src="{{ asset('js/autoCharge.js') }}" defer></script>
     <script src="{{ asset('js/fonction_vues.js') }}" defer></script>
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->

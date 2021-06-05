@@ -1,3 +1,23 @@
+//autocharge du modele
+/*$('.addMarque').delegate('#marque_id', 'change', function () {
+    let tr = $(this).parent().parent();
+    let modele_id = tr.find('#marque_id option:selected').attr('data-marque');
+    tr.find('#modele_id').val(modele_id);
+});*/
+
+
+
+
+$(document).ready(function () {
+    $('#marque_id').on('change', function () {
+
+        let marque_id = $(this).val();
+        $.get(route + '/vehicules/chargeMarque', { marque_id: marque_id }, function (data) {
+            $('#modele_id').html(data);
+        });
+
+    });
+});
 //ajoute une ligne des cases pour l'ajout
 $('.add_more').on('click', function () {
 
@@ -58,7 +78,7 @@ $('.addMoreProduct').delegate('.quantity,.discount', 'keyup', function () {
 $('#paid_amount').keyup(function () {
     let total = $('.total').html();
     let total_amount = $(this).val();
-    let tot = total_amount -total;
+    let tot = total_amount - total;
     $('#balance').val(tot).toFixed(2);
 
 });
@@ -69,7 +89,7 @@ $('.add_more').on('click', function () {
     let monnaie = $('.monnaie_id').html();
     let magasin = $('.magasin_id').html();
     let unite = $('.unite_id').html();
-    let fournisseur= $('.fournisseur_id').html();
+    let fournisseur = $('.fournisseur_id').html();
     let numberofrow = ($('.addMoreProduct tr').length - 0) + 1;
     let tr = '<tr><td class"no"">' + numberofrow + '</td>' +
         '<td><select class="form-control monnaie_id" name="monnaie_id[]">' + monnaie + '</select></td>' +

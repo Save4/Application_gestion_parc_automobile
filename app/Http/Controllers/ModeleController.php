@@ -53,7 +53,7 @@ class ModeleController extends Controller
     public function store(Request $request)
     {
         Modele::create($request->all());
-        return redirect()->back()->with('status', 'Product created successfully');
+        return redirect()->back()->with('status', 'Enregistrement reussie avec succees!!!');
     }
 
     /**
@@ -88,7 +88,7 @@ class ModeleController extends Controller
     public function update(Request $request, Modele $modele)
     {
         $modele->update($request->all());
-        return redirect()->back()->with('status', 'Product updated successfully');
+        return redirect()->back()->with('status', 'Modification reussie avec succees!!!');
     }
 
     /**
@@ -100,6 +100,6 @@ class ModeleController extends Controller
     public function destroy(Modele $modele)
     {
         $modele->delete();
-        return redirect()->back()->with('status', 'Product deleted successfully');
+        return redirect()->back()->with('status','Suppression reussie avec succees!!!');
     }
 }
