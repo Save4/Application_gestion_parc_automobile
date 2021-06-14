@@ -112,9 +112,7 @@
                                 <select name="modele_id" id="model_id" class="form-control model_id" tabindex="-1"
                                     class="@error('modele_id') is-invalid @enderror">
                                     <option value="0" disabled="true" selected="true">Selectionner le modele</option>
-                                    <!--@foreach ($modeles as $modele)
-                                        <option value="{{ $modele->id }}">{{ $modele->nom_modele }}</option>
-                                    @endforeach-->
+                                    
                                     @error('modele_id')
                                         <button class="btn-danger">{{ $message }}</button>
                                     @enderror
