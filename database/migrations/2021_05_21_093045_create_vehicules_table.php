@@ -23,6 +23,7 @@ class CreateVehiculesTable extends Migration
             $table->integer('nombre_place');
             $table->string('annee_fabrication');
             $table->string('annee_sortie');
+            $table->string('etat')->nullable();
             $table->timestamps();
             $table->foreign('modele_id')
                 ->references('id')
