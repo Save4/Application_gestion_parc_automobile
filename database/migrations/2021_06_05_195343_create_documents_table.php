@@ -17,6 +17,7 @@ class CreateDocumentsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('vehicule_id')->nullable();
             $table->unsignedBigInteger('fournisseur_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('fileName');
             $table->string('file');
             $table->date('debut_validite')->nullable();
@@ -31,6 +32,11 @@ class CreateDocumentsTable extends Migration
             $table->foreign('fournisseur_id')
                 ->references('id')
                 ->on('fournisseurs')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });

@@ -101,14 +101,14 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a href="{{ url('Type_document') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Type documents</p>
                             </a>
-                        </li>
+                        </li>-->
                         <li class="nav-item">
-                            <a href="{{ url('Documents') }}" class="nav-link">
+                            <a href="{{ url('documents') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Documents</p>
                             </a>
@@ -126,7 +126,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('Reparations') }}" class="nav-link">
+                            <a href="{{ url('reparations') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Reparations</p>
                             </a>

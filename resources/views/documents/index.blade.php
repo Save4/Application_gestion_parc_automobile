@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4 bg-primary">
-            <h1 class="h3 mb-2 text-gray-800" style="float: left">Ajouter le document</h1>
+            <h1 class="h3 mb-2 text-gray-800" style="float: left">Ajouter un document</h1>
             <!--<button type="submit" class="btn btn-dark btn-sm" style="float: right">Cr&eacute;er</button>-->
         </div>
         <div class="card shadow mb-4 border-bottom-primary">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="col col-md-4 form-group">
                             <label class="form-control-label">Etat du vehicule</label>
-                            <input type="text" placeholder="Entrer l'etat" class="form-control form-control-sm etat"
+                            <input type="text" placeholder="Autochargement de l'etat" class="form-control form-control-sm etat"
                                 disabled>
                         </div>
                         <div class="col col-md-4 form-group">
@@ -69,15 +69,30 @@
                             @enderror
                         </div>
                         <div class="col col-md-4 form-group">
-                            <label for="fileName" class="form-control-label">Nom du fichier</label>
-                            <input type="text" id="fileName" name="fileName" placeholder="Entrer le nom du fichier"
-                                class="@error('fileName') is-invalid @enderror form-control form-control-sm">
-                            @error('fileName')
-                                <div class="alert alert-danger">
-                                    <i class="fas fa-exclamation-triangle mr-1"></i>{{ $message }}
-                                </div>
-                            @enderror
+                            <label for="fournisseur_id" class="form-control-label">Fournisseur</label>
+                            <select class="form-control select2" name="fournisseur_id">
+                                <option selected="selected">Choisir un fournisseur</option>
+                                @foreach ($fournisseurs as $fournisseur)
+                                    <option value="{{ $fournisseur->id }}">
+                                        {{ $fournisseur->nom_fournisseur }}</option>
+                                @endforeach
+                                @error('fournisseur_id')
+                                    <div class="alert alert-danger">
+                                        <i class="fas fa-exclamation-triangle mr-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
+                            </select>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fileName" class="form-control-label">Nom du document</label>
+                        <input type="text" id="fileName" name="fileName" placeholder="Entrer le nom du document"
+                            class="@error('fileName') is-invalid @enderror form-control form-control-sm">
+                        @error('fileName')
+                            <div class="alert alert-danger">
+                                <i class="fas fa-exclamation-triangle mr-1"></i>{{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <div class="input-group">
@@ -89,32 +104,20 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="description" class="form-control-label">Description</label>
-                        <textarea id="description" name="description" cols="30" rows="5"
-                            placeholder="Entrer la description du fichier"
-                            class="@error('description') is-invalid @enderror form-control form-control-sm"></textarea>
-                        @error('description')
-                            <div class="alert alert-danger">
-                                <i class="fas fa-exclamation-triangle mr-1"></i>{{ $message }}
-                            </div>
-                        @enderror
-                    </div>
                     <button type="submit" class="btn btn-primary btn-sm">Cr&eacute;er</button>
                 </form>
             </div>
         </div>
     </div>
-     <div class="container-fluid">
+    <div class="container-fluid">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-head">
-                        <h4 style="float: left">Ajouter le document</h4>
-                            <a href="" style="float: right" class="btn btn-primary" data-toggle="modal"
-                                data-target="#addmodele">
-                                <i class="fa fa-plus"></i>Ajouter le document</a>
+                            <h4 style="float: left">liste des documents</h4>
+                            <a href="{{ url('show') }}" style="float: right" class="btn btn-primary">
+                                <i class="fa fa-plus"></i>Voir en detail les documents</a>
                         </div>
                         @error('fileName')
                             <div class="alert alert-danger alert-dismissible" role="alert">
@@ -136,7 +139,7 @@
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered dataTable table-responsive" id="example" role="grid"
-                                    aria-describedby="example_info">
+                                aria-describedby="example_info">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -145,7 +148,7 @@
                                         <th>Plaque</th>
                                         <th>Nom document</th>
                                         <th>Document</th>
-                                        <th>Description</th>
+                                        <th>Fournisseur</th>
                                         <th>Fin de validite</th>
                                         <th>Prix</th>
                                     </tr>
@@ -159,9 +162,9 @@
                                             <td>{{ $document->plaque }}</td>
                                             <td>{{ $document->fileName }}</td>
                                             <td>{{ $document->file }}</td>
-                                            <td>{{ $document->description }}</td>
+                                            <td>{{ $document->nom_fournisseur }}</td>
                                             <td>{{ $document->fin_validite }}</td>
-                                            <td>{{ number_format($document->prix, 2) }} FraBu</td>
+                                            <td>{{ number_format($document->prix, 0) }} FraBu</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -172,6 +175,6 @@
                 </div>
             </div>
         </div>
-
     </div>
+
 @endsection
