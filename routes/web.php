@@ -44,4 +44,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/fileUploadPost', [DocumentController::class, 'fileUploadPost'])->name('file.upload.post');
     Route::resource('documents', DocumentController::class);
     Route::get('/findEtat', [DocumentController::class, 'findEtat']);
+    Route::get('/show', [DocumentController::class, 'show']);
+    Route::get('/voir{id}', [DocumentController::class, 'voir']);
+    Route::get('/telecharger{file}', [DocumentController::class, 'telecharger']);
 });
