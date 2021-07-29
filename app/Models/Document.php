@@ -10,7 +10,7 @@ class Document extends Model
     use HasFactory;
     protected $fillable = [
         'vehicule_id','fileName','file',
-        'description', 'debut_validite',
-        'fin_validite','prix'
+        'fournisseur_id', 'debut_validite',
+        'fin_validite','prix','user_id'
     ];
 }
