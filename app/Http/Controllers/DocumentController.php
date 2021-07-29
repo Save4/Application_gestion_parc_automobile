@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Marque;
 use App\Models\Modele;
 use App\Models\Document;
 use App\Models\Vehicule;
+use App\Models\Fournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Stroage;
 
 class DocumentController extends Controller
 {
@@ -22,20 +25,23 @@ class DocumentController extends Controller
         $documents = DB::table('documents')
 
             ->join('vehicules', 'documents.vehicule_id', 'vehicules.id')
+            ->join('fournisseurs', 'documents.fournisseur_id', 'fournisseurs.id')
             ->join('modeles', 'vehicules.modele_id', 'modeles.id')
             ->join('marques', 'modeles.marque_id', 'marques.id')
-            ->select('marques.*','modeles.*','vehicules.*', 'documents.*')
+            ->select('fournisseurs.*', 'marques.*', 'modeles.*', 'vehicules.*', 'documents.*')
             ->get();
-            $marques = Marque::all();
-            $modeles = Modele::all();
-            $vehicules = Vehicule::all();
+        $marques = Marque::all();
+        $modeles = Modele::all();
+        $vehicules = Vehicule::all();
+        $fournisseurs = Fournisseur::all();
         return view('documents.index', [
             'documents' => $documents,
             'vehicules' => $vehicules,
+            'fournisseurs' => $fournisseurs,
             'modeles' => $modeles,
             'marques' => $marques,
         ]);
-/*
+        /*
         $vehicules = Vehicule::all();
         $documents_without_paginate = Document::with(['vehicule_id'])->where('fin_validite', '>=', Carbon::now());
         $documents = Document::with(['vehicule'])->where('fin_validite', '>=', Carbon::now())->paginate(9);
@@ -99,31 +105,34 @@ class DocumentController extends Controller
     }
     public function fileUploadPost(Request $request)
     {
-        $request->validate([
+        /*$request->validate([
             'file' => 'required|mimes:png,jpg,jpeg,csv,txt,xlx,xls,pdf|max:2048',
         ]);
 
         $fileName = time() . '.' . $request->file->extension();
 
-        $request->file->move(public_path('uploads'), $fileName);
+        $request->file->move(public_path('uploads'), $fileName);*/
 
-        $document = new Document();
+        $document = new document();
+        $file = $request->file;
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $request->file->move('assets', $filename);
 
+        $document->file = $filename;
         $document->vehicule_id = $request->vehicule_id;
         $document->fileName = $request->fileName;
-        $document->file = $request->file;
-        $document->description = $request->description;
+        $document->fournisseur_id = $request->fournisseur_id;
         $document->debut_validite = $request->debut_validite;
         $document->fin_validite = $request->fin_validite;
         $document->prix = $request->prix;
-        //$document->created_by = Auth::id();
+        $document->user_id = Auth::id();
 
         $document->save();
 
 
         return back()
             ->with('success', 'You have successfully upload file.')
-            ->with('file', $fileName);
+            ->with('file', $filename);
     }
 
     /**
@@ -132,9 +141,30 @@ class DocumentController extends Controller
      * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function show(Document $document)
+    public function show()
     {
-        //
+        $documents = DB::table('documents')
+
+            ->join('vehicules', 'documents.vehicule_id', 'vehicules.id')
+            ->join('fournisseurs', 'documents.fournisseur_id', 'fournisseurs.id')
+            ->join('users', 'documents.user_id', 'users.id')
+            ->join('modeles', 'vehicules.modele_id', 'modeles.id')
+            ->join('marques', 'modeles.marque_id', 'marques.id')
+            ->select('users.*', 'fournisseurs.*', 'marques.*', 'modeles.*', 'vehicules.*', 'documents.*')
+            ->get();
+        $marques = Marque::all();
+        $modeles = Modele::all();
+        $users = User::all();
+        $vehicules = Vehicule::all();
+        $fournisseurs = Fournisseur::all();
+        return view('documents.show', [
+            'documents' => $documents,
+            'vehicules' => $vehicules,
+            'fournisseurs' => $fournisseurs,
+            'users' => $users,
+            'modeles' => $modeles,
+            'marques' => $marques,
+        ]);
     }
 
     /**
@@ -175,5 +205,16 @@ class DocumentController extends Controller
         $data = Vehicule::select('etat')->where('id', $request->id)->first();
         //it will get etat if its id match with vehicule id
         return response()->json($data);
+    }
+
+    public function telecharger(Request $request, $file)
+    {
+        return response()->telecharger(public_path('assets/' . $file)); //
+    }
+
+    public function voir($id)
+    {
+        $document = Document::find($id);
+        return view('voirdocument', compact('document'));
     }
 }
