@@ -9,7 +9,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\ModeleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\VehiculeController;
+use App\Http\Controllers\ChauffeurController;
 use App\Http\Controllers\DepartementController;
 
 /*
@@ -41,4 +43,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('vehicules/{vehicule}/chargeMarque', [VehiculeController::class, 'chargeMarque']);
     Route::get('/findModele', [VehiculeController::class, 'findModele']);
     Route::resource('departements', DepartementController::class);
+    Route::resource('chauffeurs',ChauffeurController::class);
+    Route::get('/fileUpload', [DocumentController::class, 'fileUpload'])->name('file.upload');
+    Route::post('/fileUploadPost', [DocumentController::class, 'fileUploadPost'])->name('file.upload.post');
+    Route::resource('documents', DocumentController::class);
+    Route::get('/findEtat', [DocumentController::class, 'findEtat']);
+    Route::get('/show', [DocumentController::class, 'show']);
+    Route::get('/voir{id}', [DocumentController::class, 'voir']);
+    Route::get('/telecharger{file}', [DocumentController::class, 'telecharger']);
 });

@@ -26,7 +26,8 @@
         rel="stylesheet">
 
 
-
+<link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <!--Data Tables -->
     <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
