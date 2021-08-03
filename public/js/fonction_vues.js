@@ -5,9 +5,6 @@
     tr.find('#modele_id').val(modele_id);
 });*/
 
-
-
-
 $(document).ready(function () {
     $('#marque_id').on('change', function () {
 
