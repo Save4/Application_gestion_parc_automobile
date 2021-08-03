@@ -10,6 +10,7 @@ use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\ModeleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\VehiculeController;
+use App\Http\Controllers\ChauffeurController;
 use App\Http\Controllers\DepartementController;
 
 /*
@@ -41,4 +42,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('vehicules/{vehicule}/chargeMarque', [VehiculeController::class, 'chargeMarque']);
     Route::get('/findModele', [VehiculeController::class, 'findModele']);
     Route::resource('departements', DepartementController::class);
+    Route::resource('chauffeurs',ChauffeurController::class);
 });
