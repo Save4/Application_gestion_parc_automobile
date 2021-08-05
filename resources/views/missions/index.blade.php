@@ -94,7 +94,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="input-27">Plaque</label>
-                                <select name="vehicule_id" id="vehicule_id" class="select2_single form-control"
+                                <select name="vehicule_id" id="vehicule_id" class="select2_single form-control plaque"
                                     tabindex="-1" class="@error('vehicule_id') is-invalid @enderror">
                                     <option value="0" disabled="true" selected="true">Selectionner la plaque</option>
                                     @foreach ($vehicules as $vehicule)
@@ -102,6 +102,27 @@
                                             {{ $vehicule->plaque }}</option>
                                     @endforeach
                                     @error('vehicule_id')
+                                        <button class="btn-danger">{{ $message }}</button>
+                                    @enderror
+                                </select>
+                            </div>
+                            <div class="col col-md-6 form-group">
+                                <label class="form-control-label">Etat du vehicule</label>
+                                <input type="text" placeholder="L'etat du vehicule" class="form-control form-control-sm etat"
+                                disabled>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="input-27">Chauffeur</label>
+                                <select name="chauffeur_id" id="chauffeur_id" class="select2_single form-control"
+                                    tabindex="-1" class="@error('chauffeur_id') is-invalid @enderror">
+                                    <option value="0" disabled="true" selected="true">Selectionner le chauffeur</option>
+                                    @foreach ($chauffeurs as $chauffeur)
+                                        <option value="{{ $chauffeur->id }}">
+                                            {{ $chauffeur->nom_chauf }} {{ $chauffeur->prenom_chauf }}</option>
+                                    @endforeach
+                                    @error('chauffeur_id')
                                         <button class="btn-danger">{{ $message }}</button>
                                     @enderror
                                 </select>
@@ -122,21 +143,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="input-27">Chauffeur</label>
-                                <select name="chauffeur_id" id="chauffeur_id" class="select2_single form-control"
-                                    tabindex="-1" class="@error('chauffeur_id') is-invalid @enderror">
-                                    <option value="0" disabled="true" selected="true">Selectionner le chauffeur</option>
-                                    @foreach ($chauffeurs as $chauffeur)
-                                        <option value="{{ $chauffeur->id }}">
-                                            {{ $chauffeur->nom_chauf }} {{ $chauffeur->prenom_chauf }}</option>
-                                    @endforeach
-                                    @error('chauffeur_id')
-                                        <button class="btn-danger">{{ $message }}</button>
-                                    @enderror
-                                </select>
-                            </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label for="input-28">Mission</label>
                                 <input type="text" name="type_mission" id="first-name" required="required"
                                     class="form-control " class="@error('type_mission') is-invalid @enderror"
