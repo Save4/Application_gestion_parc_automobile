@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\ModeleController;
+use App\Http\Controllers\MissionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\VehiculeController;
@@ -51,4 +52,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/show', [DocumentController::class, 'show']);
     Route::get('/voir{id}', [DocumentController::class, 'voir']);
     Route::get('/telecharger{file}', [DocumentController::class, 'telecharger']);
+    Route::resource('missions', MissionController::class);
 });
