@@ -14,8 +14,20 @@ class CreateCarburantsTable extends Migration
     public function up()
     {
         Schema::create('carburants', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('vehicule_id');
+            $table->string('type_carburant');
+            $table->integer('quantite');
+            $table->integer('prix_unitaire');
+            $table->integer('prix_total');
+            $table->integer('distance');
+            $table->integer('distance_litre');
             $table->timestamps();
+            $table->foreign('vehicule_id')
+                ->references('id')
+                ->on('vehicules')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
