@@ -114,9 +114,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('carburents') }}" class="nav-link">
+                            <a href="{{ url('carburants') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Carburent</p>
+                                <p>Carburant</p>
                             </a>
                         </li>
                         <li class="nav-item">
