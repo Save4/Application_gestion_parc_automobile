@@ -15,17 +15,18 @@ class CreateCarburantsTable extends Migration
     {
         Schema::create('carburants', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('vehicule_id');
+            $table->unsignedBigInteger('mission_id');
             $table->string('type_carburant');
             $table->integer('quantite');
             $table->integer('prix_unitaire');
             $table->integer('prix_total');
             $table->integer('distance');
-            $table->integer('distance_litre');
+            $table->float('distance_littre');
+            $table->date('date_conso');
             $table->timestamps();
-            $table->foreign('vehicule_id')
+            $table->foreign('mission_id')
                 ->references('id')
-                ->on('vehicules')
+                ->on('missions')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
