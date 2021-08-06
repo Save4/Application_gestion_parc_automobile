@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vehicule;
+use App\Models\Mission;
 use App\Models\Carburant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,13 +20,13 @@ class CarburantController extends Controller
     public function index()
     {
         $carburants = DB::table('carburants')
-            ->join('vehicules', 'carburants.vehicule_id', 'vehicules.id')
-            ->select('vehicules.*', 'carburants.*')
+            ->join('missions', 'carburants.mission_id', 'missions.id')
+            ->select('missions.*', 'carburants.*')
             ->get();
-        $vehicules = Vehicule::all();
+        $missions = Mission::all();
         return view('carburants.index', [
             'carburants' => $carburants,
-            'vehicules' => $vehicules
+            'missions' => $missions
         ]);
     }
 
