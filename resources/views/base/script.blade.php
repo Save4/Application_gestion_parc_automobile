@@ -54,7 +54,7 @@
 
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquuery/3.1.1/jquery.min.js"></script>-->
 <!-- auto chargement du modele apres la selection du marque
-les donnees proviennent de deux table -->
+les donnees proviennent de deux table  (table marque et modele)-->
 <script type="text/JavaScript">
     $(document).ready(function(){
 
@@ -78,6 +78,43 @@ les donnees proviennent de deux table -->
 
                     div.find('#model_id').html("");
                     div.find('#model_id').append(op);
+                    }
+
+                },
+                error:function(){
+                    
+
+                }
+            });
+
+        });
+
+});
+</script>
+{{-- table mission et vehicule --}}
+<script type="text/JavaScript">
+    $(document).ready(function(){
+
+        $(document).on('change','#vehicule_id',function(){
+             //console.log("hmm its change");
+            let vehicule=$(this).val();
+            let div=$(this).parent().parent();
+            let op="";
+            //console.log(vehicule);
+            $.ajax({
+                type:'get',
+                url:'{!! URL::to('findMission') !!}',
+                data:{'id':vehicule},
+                success:function(data){
+                    //console.log('success');
+                    //console.log(data);
+                    //console.log(data.length);
+                    op+='<option value="0" selected="true" disabled="true">Choisir la mission</option>';
+                    for (let i = 0; i < data.length; i++) {
+                    op+='<option value="'+data[i].id+'">'+data[i].type_mission+'</option>';
+
+                    div.find('#mission_id').html("");
+                    div.find('#mission_id').append(op);
                     }
 
                 },
