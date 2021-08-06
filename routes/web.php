@@ -55,4 +55,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/telecharger{file}', [DocumentController::class, 'telecharger']);
     Route::resource('missions', MissionController::class);
     Route::resource('carburants', CarburantController::class);
+    Route::get('/findMission', [CarburantController::class, 'findMission']);
 });
