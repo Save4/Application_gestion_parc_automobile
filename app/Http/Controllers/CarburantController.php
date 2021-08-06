@@ -64,5 +64,12 @@ class CarburantController extends Controller
         $carburant->delete();
         return redirect()->back()->with('status','Suppression reussie avec succees!!!');
     }
+    public function findMission(Request $request){
+
+        $data=Mission::select('type_mission','id')->where('vehicule_id',$request->id)->take(100)->get();
+        //if our chosen id and mission table vehicule_id col match the get first 100 data
+        //$request->id here is the id of our chosen option id
+        return response()->json($data); //then sent this data to ajax success
+    }
 }
 
