@@ -11,6 +11,6 @@ class Vehicule extends Model
     protected $fillable = [
         'modele_id', 'categorie_id', 'transmission',
         'type_energie', 'plaque', 'nombre_place',
-        'annee_fabrication', 'annee_sortie'
+        'annee_fabrication', 'annee_sortie','etat'
     ];
 }
