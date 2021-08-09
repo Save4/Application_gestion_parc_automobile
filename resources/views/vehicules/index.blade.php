@@ -45,6 +45,7 @@
                                         <th>Place</th>
                                         <th>Date de fabrication</th>
                                         <th>Date de sortie</th>
+                                        <th>Etat du vehicule</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -61,6 +62,7 @@
                                             <td>{{ $vehicule->nombre_place }}</td>
                                             <td>{{ $vehicule->annee_fabrication }}</td>
                                             <td>{{ $vehicule->annee_sortie }}</td>
+                                            <td>{{ $vehicule->etat }}</td>
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="" data-toggle="modal"
