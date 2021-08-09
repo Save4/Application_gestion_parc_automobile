@@ -56,4 +56,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('missions', MissionController::class);
     Route::resource('carburants', CarburantController::class);
     Route::get('/findMission', [CarburantController::class, 'findMission']);
+    Route::get('/findEtat', [CarburantController::class, 'findEtat']);
 });
