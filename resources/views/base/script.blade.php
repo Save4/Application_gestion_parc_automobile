@@ -14,10 +14,9 @@
 <script src="{{ asset('js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('js/buttons.colVis.min.js') }}"></script>
 
-<!--<script>
+{{-- <script>
     var route = "{{ URL::to('/') }}";
-
-</script>
+</script> --}}
 <script src="{{ asset('js/autoCharge.js') }}"></script>
 <script src="{{ asset('js/prixachat.js') }}"></script>
 <script src="{{ asset('js/prixvente.js') }}"></script>-->
@@ -37,7 +36,6 @@
             .appendTo('#example_wrapper .col-md-6:eq(0)');
 
     });
-
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -48,7 +46,7 @@
 <!-- waves effect js -->
 <script src="{{ asset('assets/js/waves.js') }}"></script>
 <!-- Custom scripts -->
-<!--<script src="{{ asset('assets/js/app-script.js') }}"></script>-->
+{{-- <script src="{{ asset('assets/js/app-script.js') }}"></script> --}}
 <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('plugins/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
 
@@ -95,8 +93,8 @@ les donnees proviennent de deux table  (table marque et modele)-->
 <script type="text/JavaScript">
     $(document).ready(function(){
 
-        $(document).on('change','#vehicule_id',function(){
-             //console.log("hmm its change");
+        $(document).on('change','.vehicul_id',function(){
+            //console.log("hmm its change");
             let vehicule=$(this).val();
             let div=$(this).parent().parent();
             let op="";
@@ -113,8 +111,8 @@ les donnees proviennent de deux table  (table marque et modele)-->
                     for (let i = 0; i < data.length; i++) {
                     op+='<option value="'+data[i].id+'">'+data[i].type_mission+'</option>';
 
-                    div.find('#mission_id').html("");
-                    div.find('#mission_id').append(op);
+                    div.find('#missio_id').html("");
+                    div.find('#missio_id').append(op);
                     }
 
                 },
@@ -162,7 +160,6 @@ les donnees proviennent de deux table  (table marque et modele)-->
                 console.log('Server error occured');
             });
     }
-
 </script>
 
 <script>
@@ -242,14 +239,12 @@ les donnees proviennent de deux table  (table marque et modele)-->
         });*/
 
     })
-
 </script>
 
 <script type="text/javascript">
     $(document).ready(function() {
         bsCustomFileInput.init();
     });
-
 </script>
 <!-- Auto chargement de l'etat du vehicule apres avoir selection ca plaque 
 les donnees sont du meme table -->
@@ -266,6 +261,34 @@ les donnees sont du meme table -->
                 dataType:'json',
                 success:function(data){
                     et.find('.etat').val(data.etat); 
+
+                },
+                error:function(){
+                    
+
+                }
+            });
+
+        });
+
+});
+</script>
+{{-- table mission selection d'autres donnees --}}
+<script type="text/JavaScript">
+    $(document).ready(function(){
+
+        $(document).on('change','#missio_id',function(){
+            let type_mission=$(this).val();
+            let et=$(this).parent().parent().parent();
+            $.ajax({
+                type:'get',
+                url:'{!! URL::to('findEtat') !!}',
+                data:{'id':type_mission},
+                dataType:'json',
+                success:function(data){
+                    console.log(data)
+                    console.log(data.etat_mission)
+                    et.find('#etat_mission').val(data.etat_mission); 
 
                 },
                 error:function(){
