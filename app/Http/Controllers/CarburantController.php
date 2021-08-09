@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mission;
+use App\Models\Vehicule;
 use App\Models\Carburant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,12 +22,15 @@ class CarburantController extends Controller
     {
         $carburants = DB::table('carburants')
             ->join('missions', 'carburants.mission_id', 'missions.id')
-            ->select('missions.*', 'carburants.*')
+            ->join('vehicules', 'missions.vehicule_id', 'vehicules.id')
+            ->select('vehicules.*','missions.*', 'carburants.*')
             ->get();
         $missions = Mission::all();
+        $vehicules = Vehicule::all();
         return view('carburants.index', [
             'carburants' => $carburants,
-            'missions' => $missions
+            'missions' => $missions,
+            'vehicules' => $vehicules
         ]);
     }
 
@@ -70,6 +74,12 @@ class CarburantController extends Controller
         //if our chosen id and mission table vehicule_id col match the get first 100 data
         //$request->id here is the id of our chosen option id
         return response()->json($data); //then sent this data to ajax success
+    }
+    public function findEtat(Request $request)
+    {
+        $data = Mission::select('etat_mission')->where('id', $request->id)->first();
+        //it will get etat if its id match with vehicule id
+        return response()->json($data);
     }
 }
 
