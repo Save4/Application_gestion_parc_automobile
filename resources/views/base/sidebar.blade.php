@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-        <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="Automobile" class="brand-image img-circle elevation-3"
-            style="opacity: .8">
+        <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="Automobile"
+            class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Parc automobile</span>
     </a>
 
@@ -101,12 +101,12 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <!--<li class="nav-item">
-                            <a href="{{ url('Type_document') }}" class="nav-link">
+                        <li class="nav-item">
+                            <a href="{{ url('fournisseurs') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Type documents</p>
+                                <p>Fournisseurs</p>
                             </a>
-                        </li>-->
+                        </li>
                         <li class="nav-item">
                             <a href="{{ url('documents') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -120,7 +120,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('piecess') }}" class="nav-link">
+                            <a href="{{ url('pieces') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pieces</p>
                             </a>
