@@ -14,10 +14,9 @@
 <script src="{{ asset('js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('js/buttons.colVis.min.js') }}"></script>
 
-<!--<script>
+{{-- <script>
     var route = "{{ URL::to('/') }}";
-
-</script>
+</script> --}}
 <script src="{{ asset('js/autoCharge.js') }}"></script>
 <script src="{{ asset('js/prixachat.js') }}"></script>
 <script src="{{ asset('js/prixvente.js') }}"></script>-->
@@ -37,7 +36,6 @@
             .appendTo('#example_wrapper .col-md-6:eq(0)');
 
     });
-
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -48,13 +46,13 @@
 <!-- waves effect js -->
 <script src="{{ asset('assets/js/waves.js') }}"></script>
 <!-- Custom scripts -->
-<!--<script src="{{ asset('assets/js/app-script.js') }}"></script>-->
+{{-- <script src="{{ asset('assets/js/app-script.js') }}"></script> --}}
 <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('plugins/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
 
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquuery/3.1.1/jquery.min.js"></script>-->
 <!-- auto chargement du modele apres la selection du marque
-les donnees proviennent de deux table -->
+les donnees proviennent de deux table  (table marque et modele)-->
 <script type="text/JavaScript">
     $(document).ready(function(){
 
@@ -78,6 +76,43 @@ les donnees proviennent de deux table -->
 
                     div.find('#model_id').html("");
                     div.find('#model_id').append(op);
+                    }
+
+                },
+                error:function(){
+                    
+
+                }
+            });
+
+        });
+
+});
+</script>
+{{-- table mission et vehicule --}}
+<script type="text/JavaScript">
+    $(document).ready(function(){
+
+        $(document).on('change','.vehicul_id',function(){
+            //console.log("hmm its change");
+            let vehicule=$(this).val();
+            let div=$(this).parent().parent();
+            let op="";
+            //console.log(vehicule);
+            $.ajax({
+                type:'get',
+                url:'{!! URL::to('findMission') !!}',
+                data:{'id':vehicule},
+                success:function(data){
+                    //console.log('success');
+                    //console.log(data);
+                    //console.log(data.length);
+                    op+='<option value="0" selected="true" disabled="true">Choisir la mission</option>';
+                    for (let i = 0; i < data.length; i++) {
+                    op+='<option value="'+data[i].id+'">'+data[i].type_mission+'</option>';
+
+                    div.find('#missio_id').html("");
+                    div.find('#missio_id').append(op);
                     }
 
                 },
@@ -125,7 +160,6 @@ les donnees proviennent de deux table -->
                 console.log('Server error occured');
             });
     }
-
 </script>
 
 <script>
@@ -149,70 +183,13 @@ les donnees proviennent de deux table -->
         //Money Euro
         $('[data-mask]').inputmask()
 
-        //Date range picker
-        // $('#reservationdate').datetimepicker({
-        //   format: 'L'
-        //  });
-        //Date range picker
-        // $('#reservation').daterangepicker()
-        /*Date range picker with time picker
-        $('#reservationtime').daterangepicker({
-            timePicker: true,
-            timePickerIncrement: 30,
-            locale: {
-                format: 'MM/DD/YYYY hh:mm A'
-            }
-        })*/
-        /*Date range as a button
-        $('#daterange-btn').daterangepicker({
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1,
-                        'month').endOf('month')]
-                },
-                startDate: moment().subtract(29, 'days'),
-                endDate: moment()
-            },
-            function(start, end) {
-                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format(
-                    'MMMM D, YYYY'))
-            }
-        )
-
-        //Timepicker
-        $('#timepicker').datetimepicker({
-            format: 'LT'
-        })
-
-        //Bootstrap Duallistbox
-        $('.duallistbox').bootstrapDualListbox()
-
-        //Colorpicker
-        $('.my-colorpicker1').colorpicker()
-        //color picker with addon
-        $('.my-colorpicker2').colorpicker()
-
-        $('.my-colorpicker2').on('colorpickerChange', function(event) {
-            $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
-        });
-
-        $("input[data-bootstrap-switch]").each(function() {
-            $(this).bootstrapSwitch('state', $(this).prop('checked'));
-        });*/
-
     })
-
 </script>
 
 <script type="text/javascript">
     $(document).ready(function() {
         bsCustomFileInput.init();
     });
-
 </script>
 <!-- Auto chargement de l'etat du vehicule apres avoir selection ca plaque 
 les donnees sont du meme table -->
@@ -241,3 +218,32 @@ les donnees sont du meme table -->
 
 });
 </script>
+{{-- table mission selection d'autres donnees --}}
+<script type="text/JavaScript">
+    $(document).ready(function(){
+
+        $(document).on('change','#missio_id',function(){
+            let type_mission=$(this).val();
+            let et=$(this).parent().parent().parent();
+            $.ajax({
+                type:'get',
+                url:'{!! URL::to('findEtat') !!}',
+                data:{'id':type_mission},
+                dataType:'json',
+                success:function(data){
+                    // console.log(data)
+                    // console.log(data.etat_mission)
+                    et.find('#etat_mission').val(data.etat_mission); 
+
+                },
+                error:function(){
+                    
+
+                }
+            });
+
+        });
+
+});
+</script>
+

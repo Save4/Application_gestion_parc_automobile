@@ -36,7 +36,7 @@
                         class="nav-link dropdown-toggle">Consommations</a>
                     <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                         <li><a href="{{ url('documents') }}" class="dropdown-item">Documents </a></li>
-                        <li><a href="{{ url('carburents') }}" class="dropdown-item">Carburents </a></li>
+                        <li><a href="{{ url('carburants') }}" class="dropdown-item">Carburants </a></li>
                         <li><a href="{{ url('pieces') }}" class="dropdown-item">Pieces </a></li>
                         <li><a href="{{ url('reparations') }}" class="dropdown-item">Reparations </a></li>
                         <li class="dropdown-divider"></li>
