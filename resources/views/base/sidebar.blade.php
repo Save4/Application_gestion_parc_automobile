@@ -106,9 +106,9 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Fournisseurs</p>
                             </a>
-                        </li>-->
+                        </li>
                         <li class="nav-item">
-                            <a href="{{ url('doocuments') }}" class="nav-link">
+                            <a href="{{ url('documents') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Documents</p>
                             </a>
