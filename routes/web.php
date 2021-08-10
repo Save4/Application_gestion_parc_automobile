@@ -12,9 +12,7 @@ use App\Http\Controllers\MissionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\VehiculeController;
-use App\Http\Controllers\CarburantController;
-use App\Http\Controllers\ChauffeurController;
-use App\Http\Controllers\DepartementController;
+use App\Http\Controllers\FournisseurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,17 +42,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('vehicules', VehiculeController::class);
     Route::get('vehicules/{vehicule}/chargeMarque', [VehiculeController::class, 'chargeMarque']);
     Route::get('/findModele', [VehiculeController::class, 'findModele']);
-    Route::resource('departements', DepartementController::class);
-    Route::resource('chauffeurs',ChauffeurController::class);
-    Route::get('/fileUpload', [DocumentController::class, 'fileUpload'])->name('file.upload');
-    Route::post('/fileUploadPost', [DocumentController::class, 'fileUploadPost'])->name('file.upload.post');
-    Route::resource('documents', DocumentController::class);
-    Route::get('/findEtat', [DocumentController::class, 'findEtat']);
-    Route::get('/show', [DocumentController::class, 'show']);
-    Route::get('/voir{id}', [DocumentController::class, 'voir']);
-    Route::get('/telecharger{file}', [DocumentController::class, 'telecharger']);
-    Route::resource('missions', MissionController::class);
-    Route::resource('carburants', CarburantController::class);
-    Route::get('/findMission', [CarburantController::class, 'findMission']);
-    Route::get('/findEtat', [CarburantController::class, 'findEtat']);
+    Route::resource('fournisseurs', FournisseurController::class);
 });
