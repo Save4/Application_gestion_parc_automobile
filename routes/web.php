@@ -6,14 +6,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PieceController;
 use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\ModeleController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\VehiculeController;
+use App\Http\Controllers\CarburantController;
 use App\Http\Controllers\ChauffeurController;
+use App\Http\Controllers\ReparationController;
 use App\Http\Controllers\DepartementController;
+use App\Http\Controllers\FournisseurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,4 +57,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/voir{id}', [DocumentController::class, 'voir']);
     Route::get('/telecharger{file}', [DocumentController::class, 'telecharger']);
     Route::resource('missions', MissionController::class);
+    Route::resource('carburants', CarburantController::class);
+    Route::get('/findMission', [CarburantController::class, 'findMission']);
+    Route::get('/findEtat', [CarburantController::class, 'findEtat']);
+    Route::resource('pieces', PieceController::class);
+    Route::resource('fournisseurs', FournisseurController::class);
+    Route::resource('reparations', ReparationController::class);
 });

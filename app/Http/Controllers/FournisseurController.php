@@ -12,9 +12,17 @@ class FournisseurController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /* function __construct()
+    {
+        $this->middleware('permission:fournisseur-list|fournisseur-create|fournisseur-edit|fournisseur-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:fournisseur-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:fournisseur-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:fournisseur-delete', ['only' => ['destroy']]);
+    } */
     public function index()
     {
-        //
+        $fournisseurs = Fournisseur::all();
+        return view('fournisseurs.index', ['fournisseurs' => $fournisseurs]);
     }
 
     /**
@@ -35,7 +43,11 @@ class FournisseurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom_fournisseur' => ['required',  'max:255', 'string', 'unique:fournisseurs,nom_fournisseur']
+        ]);
+        Fournisseur::create($request->all());
+        return redirect()->back()->with('status', 'Enregistrement reussie avec succees!!!');
     }
 
     /**
@@ -69,7 +81,9 @@ class FournisseurController extends Controller
      */
     public function update(Request $request, Fournisseur $fournisseur)
     {
-        //
+
+        $fournisseur->update($request->all());
+        return redirect()->back()->with('status', 'Modification reussie avec succees!!!');
     }
 
     /**
@@ -80,6 +94,7 @@ class FournisseurController extends Controller
      */
     public function destroy(Fournisseur $fournisseur)
     {
-        //
+        $fournisseur->delete();
+        return redirect()->back()->with('status','Suppression reussie avec succees!!!');
     }
 }

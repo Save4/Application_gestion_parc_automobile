@@ -43,7 +43,8 @@
                                         <th>Mission</th>
                                         <th>Date de debut</th>
                                         <th>Date de fin</th>
-                                        <th>Etat</th>
+                                        <th>Etat du mission</th>
+                                        <th>Etat du vehicule</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -58,6 +59,7 @@
                                             <td>{{ $mission->date_debut }}</td>
                                             <td>{{ $mission->date_fin }}</td>
                                             <td>{{ $mission->etat_mission }}</td>
+                                            <td>{{ $mission->etat }}</td>
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="" class="btn btn-sm btn-info" data-toggle="modal"

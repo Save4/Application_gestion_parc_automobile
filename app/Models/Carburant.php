@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Fournisseur extends Model
+class Carburant extends Model
 {
     use HasFactory;
-    protected $table = 'fournisseurs';
     protected $fillable = [
-        'nom_fournisseur', 'adresse_fournisseur',
-        'phone_fournisseur', 'email_fournisseur'
+        'mission_id','type_carburant',
+        'quantite','prix_unitaire',
+        'prix_total','distance',
+        'distance_littre','date_conso'
     ];
 }
