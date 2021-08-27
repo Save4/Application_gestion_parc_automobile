@@ -15,6 +15,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\VehiculeController;
 use App\Http\Controllers\CarburantController;
 use App\Http\Controllers\ChauffeurController;
+use App\Http\Controllers\ReparationController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\FournisseurController;
 
@@ -61,4 +62,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/findEtat', [CarburantController::class, 'findEtat']);
     Route::resource('pieces', PieceController::class);
     Route::resource('fournisseurs', FournisseurController::class);
+    Route::resource('reparations', ReparationController::class);
 });
