@@ -109,3 +109,90 @@ $('.addMoreProduct').delegate('.delete', 'click', function () {
     $(this).parent().parent().remove();
 
 });
+
+    //ajoute une ligne des cases pour l'ajout
+$('.add_more').on('click', function () {
+
+    let piece = $('.piece_id').html();
+    let vehicule = $('.vehicule_id').html();
+    let numberofrow = ($('.addreparation tr').length - 0) + 1;
+    let tr = '<tr><td class"no"">' + numberofrow + '</td>' +
+        '<td><select class="form-control vehicule_id" name="vehicule_id[]">'+
+        '<option value="">Choisir plaque</option>@foreach ($vehicules as $vehicule)'+
+        '<option value="{{ $vehicule->id }}">'+ vehicule +'</option>@endforeach</select></td>' +
+        '<td><select class="form-control piece_id" name="piece_id[]">' + piece + '</select></td>' +
+        '<td><input type="number" name="nombre[]" class="form-control nombre"></td>' +
+        '<td><input type="number" name="prix_piece[]" class="form-control prix_piece"></td>' +
+        '<td><input type="number" name="prix_toto_piece[]" class="form-control prix_toto_piece"></td>' +
+        '<td><input type="text" name="type_panne[]" class="form-control type_panne"></td>' +
+        '<td><input type="number" name="main_oeuvre[]" class="form-control main_oeuvre"></td>' +
+        '<td><input type="number" name="toto_conso[]" class="form-control toto_conso"></td>' +
+        '<td><a class="btn btn-sm btn-danger delete"><i class="fa fa-times-circle" ></i ></a ></td > ';
+    $('.addreparation').append(tr);
+});
+
+
+    //supprimer une ligne des cases pour l'ajout
+
+$('.addreparation').delegate('.delete', 'click', function () {
+
+    $(this).parent().parent().remove();
+
+});
+
+
+    //calculer la somme
+function TotalAmount() {
+
+    let total = 0;
+    $('.toto_conso').each(function () {
+        let amount = $(this).val() - 0;
+        total += amount;
+    });
+    $('.total').html(total+"FraBu");
+
+}
+
+    $('.addreparation').delegate('.piece_id', 'change', function () {
+    let tr = $(this).parent().parent();
+    let prix_piece = tr.find('.piece_id option:selected').attr('data-price');
+    tr.find('.prix_piece').val(prix_piece);
+    let nombre = tr.find('.nombre').val() - 0;
+    let prixTotoPiece = (nombre * prix_piece);
+    tr.find('.prix_toto_piece').val(prixTotoPiece);
+    let main_oeuvre = tr.find('.main_oeuvre').val() - 0;
+    let total = (prixTotoPiece + main_oeuvre);
+    tr.find('.toto_conso').val(total);
+    TotalAmount();
+});
+
+    $('.addreparation').delegate('.nombre,.main_oeuvre', 'keyup', function () {
+
+let tr = $(this).parent().parent();
+let nombre = tr.find('.nombre').val() - 0;
+let prix_piece = tr.find('.prix_piece').val() - 0;
+let prixTotoPiece = (nombre * prix_piece);
+tr.find('.prix_toto_piece').val(prixTotoPiece);
+let main_oeuvre = tr.find('.main_oeuvre').val() - 0;
+let totals = (prixTotoPiece + main_oeuvre);
+tr.find('.toto_conso').val(totals);
+TotalAmount();
+
+});
+
+//sommation table reparations
+/* $('table').delegate('.conso_t','keyup', function (){
+    let tr= $(this).parent().parent();
+    let total=o;
+    let conso=tr.find('.conso_t').val();
+    total += conso;
+    tr.find('.total')
+});
+function total() {
+    let total=0;
+    $('.conso_t').each(function (i,e){
+        let conso=$(this).val();
+        total +=conso;
+    });
+    $('.total_t').html(total+"FraBu");
+} */
