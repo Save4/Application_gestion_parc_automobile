@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col col-md-4 form-group">
                             <label for="vehicule_id" class="form-control-label">Vehicule</label>
-                            <select class="form-control select2  plaque" id="vehicule_id" name="vehicule_id">
+                            <select class="form-control select2  plaque" id="missio_id" name="vehicule_id">
                                 <option selected="selected">Choisir la plaque</option>
                                 @foreach ($vehicules as $vehicule)
                                     <option data-price="{{ $vehicule->etat }}" value="{{ $vehicule->id }}">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="col col-md-4 form-group">
                             <label class="form-control-label">Etat du vehicule</label>
-                            <input type="text" placeholder="Autochargement de l'etat" class="form-control form-control-sm etat"
+                            <input id="etat_mission" type="text" placeholder="Autochargement de l'etat" class="form-control form-control-sm etat"
                                 disabled>
                         </div>
                         <div class="col col-md-4 form-group">
