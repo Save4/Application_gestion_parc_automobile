@@ -196,7 +196,7 @@ les donnees sont du meme table -->
 <script type="text/JavaScript">
     $(document).ready(function(){
 
-        $(document).on('change','.plaque',function(){
+        $(document).on('change','#vehicule_id',function(){
             let plak=$(this).val();
             let et=$(this).parent().parent();
             $.ajax({
@@ -206,7 +206,7 @@ les donnees sont du meme table -->
                 dataType:'json',
                 success:function(data){
                     console.log('hello')
-                    et.find('.etat').val(data.etat); 
+                    et.find('#etat').val(data.etat); 
 
                 },
                 error:function(){
