@@ -205,6 +205,7 @@ les donnees sont du meme table -->
                 data:{'id':plak},
                 dataType:'json',
                 success:function(data){
+                    console.log('hello')
                     et.find('.etat').val(data.etat); 
 
                 },
@@ -231,8 +232,8 @@ les donnees sont du meme table -->
                 data:{'id':type_mission},
                 dataType:'json',
                 success:function(data){
-                    // console.log(data)
-                    // console.log(data.etat_mission)
+                    /* console.log(data)
+                    console.log(data.etat_mission) */
                     et.find('#etat_mission').val(data.etat_mission); 
 
                 },
