@@ -96,7 +96,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="input-27">Plaque</label>
-                                <select name="vehicule_id" id="vehicule_id" class="select2_single form-control plaque"
+                                <select name="vehicule_id" id="missio_id" class="select2_single form-control plaque"
                                     tabindex="-1" class="@error('vehicule_id') is-invalid @enderror">
                                     <option value="0" disabled="true" selected="true">Selectionner la plaque</option>
                                     @foreach ($vehicules as $vehicule)
@@ -110,7 +110,7 @@
                             </div>
                             <div class="col col-md-6 form-group">
                                 <label class="form-control-label">Etat du vehicule</label>
-                                <input type="text" placeholder="L'etat du vehicule" class="form-control form-control-sm etat"
+                                <input id="etat_mission" type="text" placeholder="L'etat du vehicule" class="form-control form-control-sm etat"
                                 disabled>
                             </div>
                         </div>
