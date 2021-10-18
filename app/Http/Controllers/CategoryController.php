@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -21,8 +23,16 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('categories.index', ['categories' => $categories]);
+
+        $categories = DB::table('categories')
+            ->join('users', 'categories.user_id', 'users.id')
+            ->select('users.*', 'categories.*')
+            ->get();
+        $users = User::all();
+        return view('categories.index', [
+            'categories' => $categories,
+            'users' => $users
+        ]);
     }
 
     /**
