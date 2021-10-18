@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <div class="card">
                         <div class="card-head">
                             <h4 style="float: left">Ajouter le departement</h4>
@@ -37,6 +37,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Departement</th>
+                                        <th>Utitisateur</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -45,6 +46,7 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $departement->nom_departement }}</td>
+                                            <td>{{ $departement->name  }}
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="" class="btn btn-sm btn-info" data-toggle="modal"
