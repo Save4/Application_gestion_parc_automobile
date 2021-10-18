@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chauffeur;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ChauffeurController extends Controller
 {
@@ -21,8 +23,16 @@ class ChauffeurController extends Controller
     }
     public function index()
     {
-        $chauffeurs = Chauffeur::all();
-        return view('chauffeurs.index', ['chauffeurs' => $chauffeurs]);
+
+        $chauffeurs = DB::table('chauffeurs')
+            ->join('users', 'chauffeurs.user_id', 'users.id')
+            ->select('users.*', 'chauffeurs.*')
+            ->get();
+        $users = User::all();
+        return view('chauffeurs.index', [
+            'chauffeurs' => $chauffeurs,
+            'users' => $users
+        ]);
     }
 
     /**
