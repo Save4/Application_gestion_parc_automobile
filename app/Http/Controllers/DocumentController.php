@@ -20,16 +20,25 @@ class DocumentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+        $this->middleware('permission:document-list|document-create|document-edit|document-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:document-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:document-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:document-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $documents = DB::table('documents')
 
             ->join('vehicules', 'documents.vehicule_id', 'vehicules.id')
             ->join('fournisseurs', 'documents.fournisseur_id', 'fournisseurs.id')
+            ->join('users', 'documents.user_id', 'users.id')
             ->join('modeles', 'vehicules.modele_id', 'modeles.id')
             ->join('marques', 'modeles.marque_id', 'marques.id')
             ->select('fournisseurs.*', 'marques.*', 'modeles.*', 'vehicules.*', 'documents.*')
             ->get();
+        $users = User::all();
         $marques = Marque::all();
         $modeles = Modele::all();
         $vehicules = Vehicule::all();
@@ -40,6 +49,7 @@ class DocumentController extends Controller
             'fournisseurs' => $fournisseurs,
             'modeles' => $modeles,
             'marques' => $marques,
+            'users' => $users
         ]);
         /*
         $vehicules = Vehicule::all();
