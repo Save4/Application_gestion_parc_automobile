@@ -110,16 +110,16 @@ $('.addMoreProduct').delegate('.delete', 'click', function () {
 
 });
 
-    //ajoute une ligne des cases pour l'ajout
+//ajoute une ligne des cases pour l'ajout
 $('.add_more').on('click', function () {
 
     let piece = $('.piece_id').html();
     let vehicule = $('.vehicule_id').html();
     let numberofrow = ($('.addreparation tr').length - 0) + 1;
     let tr = '<tr><td class"no"">' + numberofrow + '</td>' +
-        '<td><select class="form-control vehicule_id" name="vehicule_id[]">'+
-        '<option value="">Choisir plaque</option>@foreach ($vehicules as $vehicule)'+
-        '<option value="{{ $vehicule->id }}">'+ vehicule +'</option>@endforeach</select></td>' +
+        '<td><select class="form-control vehicule_id" name="vehicule_id[]">' +
+        '<option value="">Choisir plaque</option>@foreach ($vehicules as $vehicule)' +
+        '<option value="{{ $vehicule->id }}">' + vehicule + '</option>@endforeach</select></td>' +
         '<td><select class="form-control piece_id" name="piece_id[]">' + piece + '</select></td>' +
         '<td><input type="number" name="nombre[]" class="form-control nombre"></td>' +
         '<td><input type="number" name="prix_piece[]" class="form-control prix_piece"></td>' +
@@ -132,7 +132,7 @@ $('.add_more').on('click', function () {
 });
 
 
-    //supprimer une ligne des cases pour l'ajout
+//supprimer une ligne des cases pour l'ajout
 
 $('.addreparation').delegate('.delete', 'click', function () {
 
@@ -141,7 +141,7 @@ $('.addreparation').delegate('.delete', 'click', function () {
 });
 
 
-    //calculer la somme
+//calculer la somme
 function TotalAmount() {
 
     let total = 0;
@@ -149,11 +149,11 @@ function TotalAmount() {
         let amount = $(this).val() - 0;
         total += amount;
     });
-    $('.total').html(total+"FraBu");
+    $('.total').html(total + "FraBu");
 
 }
 
-    $('.addreparation').delegate('.piece_id', 'change', function () {
+$('.addreparation').delegate('.piece_id', 'change', function () {
     let tr = $(this).parent().parent();
     let prix_piece = tr.find('.piece_id option:selected').attr('data-price');
     tr.find('.prix_piece').val(prix_piece);
@@ -166,17 +166,17 @@ function TotalAmount() {
     TotalAmount();
 });
 
-    $('.addreparation').delegate('.nombre,.main_oeuvre', 'keyup', function () {
+$('.addreparation').delegate('.nombre,.main_oeuvre', 'keyup', function () {
 
-let tr = $(this).parent().parent();
-let nombre = tr.find('.nombre').val() - 0;
-let prix_piece = tr.find('.prix_piece').val() - 0;
-let prixTotoPiece = (nombre * prix_piece);
-tr.find('.prix_toto_piece').val(prixTotoPiece);
-let main_oeuvre = tr.find('.main_oeuvre').val() - 0;
-let totals = (prixTotoPiece + main_oeuvre);
-tr.find('.toto_conso').val(totals);
-TotalAmount();
+    let tr = $(this).parent().parent();
+    let nombre = tr.find('.nombre').val() - 0;
+    let prix_piece = tr.find('.prix_piece').val() - 0;
+    let prixTotoPiece = (nombre * prix_piece);
+    tr.find('.prix_toto_piece').val(prixTotoPiece);
+    let main_oeuvre = tr.find('.main_oeuvre').val() - 0;
+    let totals = (prixTotoPiece + main_oeuvre);
+    tr.find('.toto_conso').val(totals);
+    TotalAmount();
 
 });
 
@@ -196,3 +196,24 @@ function total() {
     });
     $('.total_t').html(total+"FraBu");
 } */
+
+
+$(document).ready(function () {
+    $("#unit,#quantit").keyup(function () {
+        let total = 0;
+        let unit = Number($("#unit").val()-0);
+        let quantit = Number($("#quantit").val()-0);
+        total = unit * quantit;
+        $('#prix_total').val(total);
+    });
+});
+
+$(document).ready(function () {
+    $("#distance,#quantit").keyup(function () {
+        let total = 0.0;
+        let distance = Number($("#distance").val()-0);
+        let quantit = Number($("#quantit").val()-0);
+        total = distance/quantit;
+        $('#distance_littre').val(total);
+    });
+});
