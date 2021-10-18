@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Marque;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MarqueController extends Controller
 {
@@ -21,8 +23,15 @@ class MarqueController extends Controller
      */
     public function index()
     {
-        $marques = Marque::all();
-        return view('marques.index', ['marques' => $marques]);
+        $marques = DB::table('marques')
+            ->join('users', 'marques.user_id', 'users.id')
+            ->select('users.*', 'marques.*')
+            ->get();
+        $users = User::all();
+        return view('marques.index', [
+            'marques' => $marques,
+            'users' => $users
+        ]);
     }
 
     /**
