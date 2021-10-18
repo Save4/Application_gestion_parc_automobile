@@ -40,6 +40,7 @@
                                         <th>Adresse</th>
                                         <th>Telephone</th>
                                         <th>Email</th>
+                                        <th>Utitisateur</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -51,6 +52,7 @@
                                             <td>{{ $fournisseur->adresse_fournisseur }}</td>
                                             <td>{{ $fournisseur->phone_fournisseur }}</td>
                                             <td>{{ $fournisseur->email_fournisseur }}</td>
+                                            <td>{{ $fournisseur->name  }}
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="" class="btn btn-sm btn-info" data-toggle="modal"
