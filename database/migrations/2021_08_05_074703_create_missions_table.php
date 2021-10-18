@@ -18,6 +18,7 @@ class CreateMissionsTable extends Migration
             $table->unsignedBigInteger('vehicule_id');
             $table->unsignedBigInteger('departement_id');
             $table->unsignedBigInteger('chauffeur_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('type_mission');
             $table->date('date_debut');
             $table->date('date_fin');
@@ -36,6 +37,11 @@ class CreateMissionsTable extends Migration
             $table->foreign('chauffeur_id')
                 ->references('id')
                 ->on('chauffeurs')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
