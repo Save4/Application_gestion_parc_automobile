@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Marque;
 use App\Models\Modele;
 use App\Models\Category;
+use App\Models\User;
 use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,9 +29,11 @@ class VehiculeController extends Controller
         $vehicules = DB::table('vehicules')
             ->join('modeles', 'vehicules.modele_id', 'modeles.id')
             ->join('marques', 'modeles.marque_id', 'marques.id')
+            ->join('users', 'vehicules.user_id', 'users.id')
             ->join('categories', 'vehicules.categorie_id', 'categories.id')
-            ->select('marques.*', 'modeles.*', 'categories.*', 'vehicules.*')
+            ->select('users.*','marques.*', 'modeles.*', 'categories.*', 'vehicules.*')
             ->get();
+        $users = User::all();
         $marques = Marque::all();
         $modeles = Modele::all();
         $categories = Category::all();
@@ -38,6 +41,7 @@ class VehiculeController extends Controller
             'vehicules' => $vehicules,
             'marques' => $marques,
             'modeles' => $modeles,
+            'users' => $users,
             'categories' => $categories
         ]);
     }
