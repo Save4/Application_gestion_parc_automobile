@@ -16,7 +16,13 @@ class CreateMarquesTable extends Migration
         Schema::create('marques', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nom_marque');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
