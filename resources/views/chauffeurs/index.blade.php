@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-8">
                     <div class="card">
                         <div class="card-head">
                             <h4 style="float: left">Ajouter le chauffeur</h4>
@@ -39,6 +39,7 @@
                                         <th>Nom</th>
                                         <th>Prenom</th>
                                         <th>Contacts</th>
+                                        <th>Utitisateur</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -49,6 +50,7 @@
                                             <td>{{ $chauffeur->nom_chauf }}</td>
                                             <td>{{ $chauffeur->prenom_chauf }}</td>
                                             <td>{{ $chauffeur->nume_permis_conduire }}</td>
+                                            <td>{{ $chauffeur->name  }}</td>
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="" class="btn btn-sm btn-info" data-toggle="modal"
