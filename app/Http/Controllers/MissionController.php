@@ -6,6 +6,7 @@ use App\Models\Mission;
 use App\Models\Vehicule;
 use App\Models\Chauffeur;
 use App\Models\Departement;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,9 +24,11 @@ class MissionController extends Controller
         $missions = DB::table('missions')
             ->join('vehicules', 'missions.vehicule_id', 'vehicules.id')
             ->join('departements', 'missions.departement_id', 'departements.id')
+            ->join('users', 'missions.user_id', 'users.id')
             ->join('chauffeurs', 'missions.chauffeur_id', 'chauffeurs.id')
-            ->select('vehicules.*', 'departements.*', 'chauffeurs.*',  'missions.*')
+            ->select('users.*','vehicules.*', 'departements.*', 'chauffeurs.*',  'missions.*')
             ->get();
+        $users = User::all();
         $vehicules = Vehicule::all();
         $departements = Departement::all();
         $chauffeurs = Chauffeur::all();
@@ -33,7 +36,8 @@ class MissionController extends Controller
             'missions' => $missions,
             'vehicules' => $vehicules,
             'departements' => $departements,
-            'chauffeurs' => $chauffeurs
+            'chauffeurs' => $chauffeurs,
+            'users' => $users
         ]);
     }
 
