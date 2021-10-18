@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <div class="card">
                         <div class="card-head">
                             <h4 style="float: left">Ajouter le modele</h4>
@@ -38,6 +38,7 @@
                                         <th>#</th>
                                         <th>Marque</th>
                                         <th>Modele</th>
+                                        <th>Utitisateur</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -47,6 +48,7 @@
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $modele->nom_marque }}</td>
                                             <td>{{ $modele->nom_modele }}</td>
+                                            <td>{{ $modele->name }}
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="" class="btn btn-sm btn-info" data-toggle="modal"
