@@ -46,6 +46,7 @@
                                         <th>Distance</th>
                                         <th>Km/L</th>
                                         <th>Date de consommation</th>
+                                        <th>Utitisateur</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -62,6 +63,7 @@
                                             <td>{{ number_format($carburant->distance, 2) }}Km</td>
                                             <td>{{ number_format($carburant->distance_littre, 2) }}Km/L</td>
                                             <td>{{ $carburant->date_conso }}</td>
+                                            <td>{{$carburant->name  }}
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="" data-toggle="modal"
@@ -92,7 +94,7 @@
                     <h4 class="modal-title" id="staticBackdropLabel">Ajouter le carburant</h4>
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body somme">
                     <form action="{{ route('carburants.store') }}" method="POST">
                         @csrf
                         <div class="form-row">
@@ -143,7 +145,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="input-28">Prix unitaire en FraBu</label>
-                                <input type="number" name="prix_unitaire" id="first-name" required="required"
+                                <input type="number" name="prix_unitaire" id="unit" required="required"
                                     class="form-control prix_unitaire" class="@error('prix_unitaire') is-invalid @enderror"
                                     placeholder="" value="">
                                 @error('prix_unitaire')
@@ -152,7 +154,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="input-28">Quantite en L</label>
-                                <input type="number" name="quantite" id="first-name" required="required"
+                                <input type="number" name="quantite" id="quantit" required="required"
                                     class="form-control quantite" class="@error('quantite') is-invalid @enderror"
                                     placeholder="" value="">
                                 @error('quantite')
@@ -165,7 +167,7 @@
                                 <label for="input-27">Prix total en FraBu</label>
                                 <input type="number" name="prix_total" id="prix_total" required="required"
                                     class="form-control prix_total" class="@error('prix_total') is-invalid @enderror"
-                                    placeholder="" value="">
+                                    placeholder="" value="" disabled>
                                 @error('prix_total')
                                     <button class="btn-danger">{{ $message }}</button>
                                 @enderror
@@ -184,7 +186,7 @@
                                 <label for="input-27">Km/L</label>
                                 <input type="number" name="distance_littre" id="distance_littre" required="required"
                                     class="form-control " class="@error('distance_littre') is-invalid @enderror"
-                                    placeholder="" value="">
+                                    placeholder="" value="" disabled>
                                 @error('distance_littre')
                                     <button class="btn-danger">{{ $message }}</button>
                                 @enderror
@@ -271,7 +273,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="input-28">Prix unitaire en FraBu</label>
-                                <input type="number" name="prix_unitaire" id="first-name" required="required"
+                                <input type="number" name="prix_unitaire" id="unit" required="required"
                                     class="form-control prix_unitaire" class="@error('prix_unitaire') is-invalid @enderror"
                                     placeholder="" value="{{ $carburant->prix_unitaire  }}">
                                 @error('prix_unitaire')
@@ -280,7 +282,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="input-28">Quantite en L</label>
-                                <input type="number" name="quantite" id="first-name" required="required"
+                                <input type="number" name="quantite" id="quantit" required="required"
                                     class="form-control quantite" class="@error('quantite') is-invalid @enderror"
                                     placeholder="" value="{{$carburant->quantite  }}">
                                 @error('quantite')
