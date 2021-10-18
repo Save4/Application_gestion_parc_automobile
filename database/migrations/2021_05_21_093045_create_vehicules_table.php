@@ -17,6 +17,7 @@ class CreateVehiculesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('modele_id');
             $table->unsignedBigInteger('categorie_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('transmission');
             $table->string('type_energie');
             $table->string('plaque');
@@ -33,6 +34,11 @@ class CreateVehiculesTable extends Migration
             $table->foreign('categorie_id')
                 ->references('id')
                 ->on('categories')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
