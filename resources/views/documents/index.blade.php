@@ -150,6 +150,7 @@
                                         <th>Document</th>
                                         <th>Fournisseur</th>
                                         <th>Fin de validite</th>
+                                        <th>Utitisateur</th>
                                         <th>Prix</th>
                                     </tr>
                                 </thead>
@@ -165,6 +166,7 @@
                                             <td>{{ $document->nom_fournisseur }}</td>
                                             <td>{{ $document->fin_validite }}</td>
                                             <td>{{ number_format($document->prix, 0) }} FraBu</td>
+                                            <td>{{ $document->name  }}
                                         </tr>
                                     @endforeach
                                 </tbody>
