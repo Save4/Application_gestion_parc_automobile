@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Departement;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DepartementController extends Controller
 {
@@ -21,8 +23,15 @@ class DepartementController extends Controller
 
     public function index()
     {
-        $departements = Departement::all();
-        return view('departements.index', ['departements' => $departements]);
+        $departements = DB::table('departements')
+            ->join('users', 'departements.user_id', 'users.id')
+            ->select('users.*', 'departements.*')
+            ->get();
+        $users = User::all();
+        return view('departements.index', [
+            'departements' => $departements,
+            'users' => $users
+        ]);
     }
 
     /**
