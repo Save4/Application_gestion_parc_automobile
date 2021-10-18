@@ -37,6 +37,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Marque</th>
+                                        <th>Utitisateur</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -45,6 +46,7 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $marque->nom_marque }}</td>
+                                            <td>{{ $marque->name }}</td>
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="" class="btn btn-sm btn-info" data-toggle="modal"
