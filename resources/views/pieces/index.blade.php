@@ -105,9 +105,6 @@
                             <input type="text" name="nom_piece" id="" class="form-control" placeholder="piece"
                                 aria-describedby="helpId">
                         </div>
-                        <div class="modal-footer">
-                            <button type="" name="" id="" class="btn btn-primary btn-block">Enregistre</button>
-                        </div>
                         <div class="form-group">
                             <label for="">Prix</label>
                             <input type="number" name="prix_piece" id="" class="form-control" placeholder="prix_piece"
