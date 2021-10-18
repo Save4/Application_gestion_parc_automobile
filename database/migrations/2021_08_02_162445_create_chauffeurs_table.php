@@ -18,7 +18,13 @@ class CreateChauffeursTable extends Migration
             $table->string('nom_chauf');
             $table->string('prenom_chauf');
             $table->string('nume_permis_conduire');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
