@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Fournisseur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FournisseurController extends Controller
 {
@@ -12,17 +14,24 @@ class FournisseurController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    /* function __construct()
+    function __construct()
     {
         $this->middleware('permission:fournisseur-list|fournisseur-create|fournisseur-edit|fournisseur-delete', ['only' => ['index', 'show']]);
         $this->middleware('permission:fournisseur-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:fournisseur-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:fournisseur-delete', ['only' => ['destroy']]);
-    } */
+    }
     public function index()
     {
-        $fournisseurs = Fournisseur::all();
-        return view('fournisseurs.index', ['fournisseurs' => $fournisseurs]);
+        $fournisseurs = DB::table('fournisseurs')
+            ->join('users', 'fournisseurs.user_id', 'users.id')
+            ->select('users.*', 'fournisseurs.*')
+            ->get();
+        $users = User::all();
+        return view('fournisseurs.index', [
+            'fournisseurs' => $fournisseurs,
+            'users' => $users
+        ]);
     }
 
     /**
@@ -95,6 +104,6 @@ class FournisseurController extends Controller
     public function destroy(Fournisseur $fournisseur)
     {
         $fournisseur->delete();
-        return redirect()->back()->with('status','Suppression reussie avec succees!!!');
+        return redirect()->back()->with('status', 'Suppression reussie avec succees!!!');
     }
 }
