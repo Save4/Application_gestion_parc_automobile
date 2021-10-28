@@ -1,8 +1,8 @@
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-lightblue">
     <div class="container">
-        <a href="#" class="navbar-brand">
-            <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="Automobile"
-                class="brand-image img-circle elevation-3" style="opacity: .8">
+        <a href="{{ url('/home') }}" class="navbar-brand">
+            <img src="{{ asset('dist/img/logo.png') }}" alt="Automobile" class="brand-image img-circle elevation-3"
+                style="opacity: .8">
             <span class="brand-text font-weight-light">Parc automobile</span>
         </a>
 
@@ -15,7 +15,8 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">Home</a>
@@ -62,22 +63,22 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
-                                                                    document.getElementById('logout-form').submit();">
+                                document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-
+                            @can('user-list')
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-
-                            <a class="dropdown-item" href="{{ route('users.index') }}">Liste des utilisateurs</a>
-
-                            <a class="dropdown-item" href="{{ route('roles.index') }}">Liste des roles</a>
-
+                            
+                                <div>
+                                    <a class="dropdown-item" href="{{ route('users.index') }}">Liste des utilisateurs</a>
+                                    <a class="dropdown-item" href="{{ route('roles.index') }}">Liste des roles</a>
+                                </div>
+                            @endcan
                         </div>
                     </li>
                 @endguest
