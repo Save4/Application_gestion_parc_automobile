@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -56,7 +57,11 @@ class CategoryController extends Controller
         $request->validate([
             'nom_category' => ['required',  'max:255', 'string', 'unique:categories,nom_category']
         ]);
-        Category::create($request->all());
+        $category = new Category();
+        $category->nom_category = $request->nom_category;
+        $category->user_id = Auth::id();
+
+        $category->save();
         return redirect()->back()->with('status', 'Enregistrement reussie avec succees!!!');
     }
 
@@ -94,7 +99,10 @@ class CategoryController extends Controller
         $request->validate([
             'nom_category' => ['required',  'max:255', 'string', 'unique:categories,nom_category']
         ]);
-        $category->update($request->all());
+        $category->nom_category = $request->nom_category;
+        $category->user_id = Auth::id();
+
+        $category->save();
         return redirect()->back()->with('status', 'Modification reussie avec succees!!!');
     }
 
@@ -107,6 +115,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->back()->with('status','Suppression reussie avec succees!!!');
+        return redirect()->back()->with('status', 'Suppression reussie avec succees!!!');
     }
 }
