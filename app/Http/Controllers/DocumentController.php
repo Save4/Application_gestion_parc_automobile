@@ -36,7 +36,7 @@ class DocumentController extends Controller
             ->join('users', 'documents.user_id', 'users.id')
             ->join('modeles', 'vehicules.modele_id', 'modeles.id')
             ->join('marques', 'modeles.marque_id', 'marques.id')
-            ->select('fournisseurs.*', 'marques.*', 'modeles.*', 'vehicules.*', 'documents.*')
+            ->select('users.*','fournisseurs.*', 'marques.*', 'modeles.*', 'vehicules.*', 'documents.*')
             ->get();
         $users = User::all();
         $marques = Marque::all();
