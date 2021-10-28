@@ -8,6 +8,7 @@ use App\Models\Marque;
 use App\Models\Modele;
 use App\Models\Vehicule;
 use App\Models\Reparation;
+use App\Models\Fournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -26,22 +27,25 @@ class ReparationController extends Controller
         $reparations = DB::table('reparations')
             ->join('pieces', 'reparations.piece_id', 'pieces.id')
             ->join('vehicules', 'reparations.vehicule_id', 'vehicules.id')
+            ->join('fournisseurs', 'reparations.fournisseur_id', 'fournisseurs.id')
             ->join('modeles', 'vehicules.modele_id', 'modeles.id')
             ->join('marques', 'modeles.marque_id', 'marques.id')
             ->join('users', 'reparations.user_id', 'users.id')
-            ->select('marques.*','modeles.*','pieces.*', 'users.*', 'vehicules.*', 'reparations.*')
+            ->select('fournisseurs.*','marques.*','modeles.*','pieces.*', 'users.*', 'vehicules.*', 'reparations.*')
             ->get();
         $pieces = Piece::all();
         $users = User::all();
         $vehicules = Vehicule::all();
         $modeles = Modele::all();
         $marques = Marque::all();
+        $fournisseurs = Fournisseur::all();
         return view('reparations.index', [
             'vehicules' => $vehicules,
             'pieces' => $pieces,
             'modeles' => $modeles,
             'marques' => $marques,
             'users' => $users,
+            'fournisseurs' => $fournisseurs,
             'reparations' => $reparations
         ]);
     }
@@ -68,6 +72,7 @@ class ReparationController extends Controller
             $reparation = new Reparation;
             $reparation->piece_id = $request->piece_id[$piece_id];
             $reparation->vehicule_id = $request->vehicule_id[$piece_id];
+            $reparation->fournisseur_id = $request->fournisseur_id[$piece_id];
             $reparation->type_panne = $request->type_panne[$piece_id];
             $reparation->nombre = $request->nombre[$piece_id];
             $reparation->prix_toto_piece = $request->prix_toto_piece[$piece_id];
