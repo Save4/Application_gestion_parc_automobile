@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chauffeur;
 use App\Models\User;
+use App\Models\Chauffeur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ChauffeurController extends Controller
 {
@@ -56,7 +57,13 @@ class ChauffeurController extends Controller
         $request->validate([
             'nume_permis_conduire' => ['required',  'max:255', 'string', 'unique:chauffeurs,nume_permis_conduire']
         ]);
-        Chauffeur::create($request->all());
+        $chauffeur = new Chauffeur();
+        $chauffeur->nom_chauf = $request->nom_chauf;
+        $chauffeur->prenom_chauf = $request->prenom_chauf;
+        $chauffeur->nume_permis_conduire = $request->nume_permis_conduire;
+        $chauffeur->user_id = Auth::id();
+
+        $chauffeur->save();
         return redirect()->back()->with('status', 'Enregistrement reussie avec succees!!!');
     }
 
@@ -94,7 +101,12 @@ class ChauffeurController extends Controller
         // $request->validate([
         //     'nume_permis_conduire' => ['required',  'max:255', 'string', 'unique:chauffeurs,nume_permis_conduire']
         // ]);
-        $chauffeur->update($request->all());
+        $chauffeur->nom_chauf = $request->nom_chauf;
+        $chauffeur->prenom_chauf = $request->prenom_chauf;
+        $chauffeur->nume_permis_conduire = $request->nume_permis_conduire;
+        $chauffeur->user_id = Auth::id();
+
+        $chauffeur->save();
         return redirect()->back()->with('status', 'Modification reussie avec succees!!!');
     }
 
