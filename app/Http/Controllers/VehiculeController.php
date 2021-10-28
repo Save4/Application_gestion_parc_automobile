@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Marque;
 use App\Models\Modele;
 use App\Models\Category;
-use App\Models\User;
 use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class VehiculeController extends Controller
 {
@@ -31,7 +32,7 @@ class VehiculeController extends Controller
             ->join('marques', 'modeles.marque_id', 'marques.id')
             ->join('users', 'vehicules.user_id', 'users.id')
             ->join('categories', 'vehicules.categorie_id', 'categories.id')
-            ->select('users.*','marques.*', 'modeles.*', 'categories.*', 'vehicules.*')
+            ->select('users.*', 'marques.*', 'modeles.*', 'categories.*', 'vehicules.*')
             ->get();
         $users = User::all();
         $marques = Marque::all();
@@ -67,7 +68,20 @@ class VehiculeController extends Controller
         $request->validate([
             'plaque' => ['required',  'max:255', 'string', 'unique:vehicules,plaque']
         ]);
-        Vehicule::create($request->all());
+        $vehicule = new Vehicule();
+
+        $vehicule->modele_id = $request->modele_id;
+        $vehicule->categorie_id = $request->categorie_id;
+        $vehicule->transmission = $request->transmission;
+        $vehicule->type_energie = $request->type_energie;
+        $vehicule->plaque = $request->plaque;
+        $vehicule->nombre_place = $request->nombre_place;
+        $vehicule->annee_fabrication = $request->annee_fabrication;
+        $vehicule->annee_sortie = $request->annee_sortie;
+        $vehicule->etat = $request->etat;
+        $vehicule->user_id = Auth::id();
+
+        $vehicule->save();
         return redirect()->back()->with('status', 'Enregistrement reussie avec succees!!!');
     }
 
@@ -102,7 +116,30 @@ class VehiculeController extends Controller
      */
     public function update(Request $request, Vehicule $vehicule)
     {
-        $vehicule->update($request->all());
+         //
+        $request->validate([
+            'modele_id' => 'required',
+            'categorie_id' => 'required',
+            'transmission' => 'required',
+            'type_energie' => 'required',
+            'plaque' => 'required',
+            'nombre_place' => 'required',
+            'annee_fabrication' => 'required',
+            'annee_sortie' => 'required',
+            'etat' => 'required',
+        ]);
+        $vehicule->modele_id = $request->modele_id;
+        $vehicule->categorie_id = $request->categorie_id;
+        $vehicule->transmission = $request->transmission;
+        $vehicule->type_energie = $request->type_energie;
+        $vehicule->plaque = $request->plaque;
+        $vehicule->nombre_place = $request->nombre_place;
+        $vehicule->annee_fabrication = $request->annee_fabrication;
+        $vehicule->annee_sortie = $request->annee_sortie;
+        $vehicule->etat = $request->etat;
+        $vehicule->user_id = Auth::id();
+
+        $vehicule->save();
         return redirect()->back()->with('success', 'Product updated successfully');
     }
 
@@ -132,9 +169,10 @@ class VehiculeController extends Controller
 
         ]);
     }
-    public function findModele(Request $request){
+    public function findModele(Request $request)
+    {
 
-        $data=Modele::select('nom_modele','id')->where('marque_id',$request->id)->take(100)->get();
+        $data = Modele::select('nom_modele', 'id')->where('marque_id', $request->id)->take(100)->get();
         //if our chosen id and modele table marque_id col match the get first 100 data
         //$request->id here is the id of our chosen option id
         return response()->json($data); //then sent this data to ajax success
