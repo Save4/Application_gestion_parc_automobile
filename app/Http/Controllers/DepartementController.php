@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Departement;
 use App\Models\User;
+use App\Models\Departement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DepartementController extends Controller
 {
@@ -55,7 +56,10 @@ class DepartementController extends Controller
         $request->validate([
             'nom_departement' => ['required',  'max:255', 'string', 'unique:departements,nom_departement']
         ]);
-        Departement::create($request->all());
+        $departement = new Departement();
+        $departement->nom_departement = $request->nom_departement;
+        $departement->user_id = Auth::id();
+        $departement->save();
         return redirect()->back()->with('status', 'Enregistrement reussie avec succees!!!');
     }
 
@@ -93,7 +97,9 @@ class DepartementController extends Controller
         $request->validate([
             'nom_departement' => ['required',  'max:255', 'string', 'unique:departements,nom_departement']
         ]);
-        $departement->update($request->all());
+        $departement->nom_departement = $request->nom_departement;
+        $departement->user_id = Auth::id();
+        $departement->save();
         return redirect()->back()->with('status', 'Modification reussie avec succees!!!');
     }
     /**
