@@ -49,7 +49,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #000507;
                 padding: 0 25px;
                 font-size: 13px;
                 font-weight: 600;
@@ -76,16 +76,16 @@
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
 
-                        @if (Route::has('register'))
+{{--                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                        @endif
+                        @endif --}}
                     @endauth
                 </div>
             @endif
             <div class="content">
-                <div class="title m-b-md">
+                {{-- <div class="title m-b-md">
                     <marquee>Bienvenu a notre application de gestion du parc automobile Au SOFT CENTER</marquee>
-                </div>
+                </div> --}}
 
 
 
