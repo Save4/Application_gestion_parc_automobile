@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Marque;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class MarqueController extends Controller
 {
@@ -55,7 +56,11 @@ class MarqueController extends Controller
         $request->validate([
             'nom_marque' => ['required',  'max:255', 'string', 'unique:marques,nom_marque']
         ]);
-        Marque::create($request->all());
+        $marque = new Marque();
+        $marque->nom_marque = $request->nom_marque;
+        $marque->user_id = Auth::id();
+
+        $marque->save();
         return redirect()->back()->with('status', 'Enregistrement reussie avec succees!!!');
     }
 
@@ -93,7 +98,9 @@ class MarqueController extends Controller
         $request->validate([
             'nom_marque' => ['required',  'max:255', 'string', 'unique:marques,nom_marque']
         ]);
-        $marque->update($request->all());
+        $marque->nom_marque = $request->nom_marque;
+        $marque->user_id = Auth::id();
+        $marque->save();
         return redirect()->back()->with('status', 'Modification reussie avec succees!!!');
     }
 
