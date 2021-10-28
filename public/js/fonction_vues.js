@@ -115,11 +115,15 @@ $('.add_more').on('click', function () {
 
     let piece = $('.piece_id').html();
     let vehicule = $('.vehicule_id').html();
+    let fournisseur = $('.fournisseur_id').html();
     let numberofrow = ($('.addreparation tr').length - 0) + 1;
     let tr = '<tr><td class"no"">' + numberofrow + '</td>' +
         '<td><select class="form-control vehicule_id" name="vehicule_id[]">' +
         '<option value="">Choisir plaque</option>@foreach ($vehicules as $vehicule)' +
         '<option value="{{ $vehicule->id }}">' + vehicule + '</option>@endforeach</select></td>' +
+        '<td><select class="form-control fournisseur_id" name="fournisseur_id[]">' +
+        '<option value="">Choisir le fournisseur</option>@foreach ($fournisseurs as $fournisseur)' +
+        '<option value="{{ $fournisseur->id }}">' + fournisseur + '</option>@endforeach</select></td>' +
         '<td><select class="form-control piece_id" name="piece_id[]">' + piece + '</select></td>' +
         '<td><input type="number" name="nombre[]" class="form-control nombre"></td>' +
         '<td><input type="number" name="prix_piece[]" class="form-control prix_piece"></td>' +
