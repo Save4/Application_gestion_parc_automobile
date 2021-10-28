@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Mission;
 use App\Models\Vehicule;
 use App\Models\Chauffeur;
 use App\Models\Departement;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class MissionController extends Controller
 {
@@ -49,7 +50,19 @@ class MissionController extends Controller
 
     public function store(Request $request)
     {
-        Mission::create($request->all());
+        
+        $mission = new Mission();
+
+        $mission->vehicule_id = $request->vehicule_id;
+        $mission->departement_id = $request->departement_id;
+        $mission->chauffeur_id = $request->chauffeur_id;
+        $mission->type_mission = $request->type_mission;
+        $mission->date_debut = $request->date_debut;
+        $mission->date_fin = $request->date_fin;
+        $mission->etat_mission = $request->etat_mission;
+        $mission->user_id = Auth::id();
+
+        $mission->save();
         return redirect()->back()->with('status', 'Enregistrement reussie avec succees!!!');
     }
 
@@ -65,7 +78,16 @@ class MissionController extends Controller
 
     public function update(Request $request, Mission $mission)
     {
-        $mission->update($request->all());
+        $mission->vehicule_id = $request->vehicule_id;
+        $mission->departement_id = $request->departement_id;
+        $mission->chauffeur_id = $request->chauffeur_id;
+        $mission->type_mission = $request->type_mission;
+        $mission->date_debut = $request->date_debut;
+        $mission->date_fin = $request->date_fin;
+        $mission->etat_mission = $request->etat_mission;
+        $mission->user_id = Auth::id();
+
+        $mission->save();
         return redirect()->back()->with('status', 'Modification reussie avec succees!!!');
     }
 
