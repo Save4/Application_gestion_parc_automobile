@@ -19,6 +19,7 @@ class CreateReparationsTable extends Migration
             $table->unsignedBigInteger('piece_id');
             $table->unsignedBigInteger('vehicule_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('fournisseur_id');
             $table->integer('nombre');
             $table->integer('prix_toto_piece');
             $table->integer('main_oeuvre');
@@ -32,6 +33,11 @@ class CreateReparationsTable extends Migration
             $table->foreign('piece_id')
                 ->references('id')
                 ->on('pieces')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('fournisseur_id')
+                ->references('id')
+                ->on('fournisseurs')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreign('vehicule_id')
