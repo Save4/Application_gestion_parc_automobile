@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Marque;
 use App\Models\Modele;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ModeleController extends Controller
 {
@@ -56,7 +57,13 @@ class ModeleController extends Controller
      */
     public function store(Request $request)
     {
-        Modele::create($request->all());
+        $modele = new Modele();
+
+        $modele->marque_id = $request->marque_id;
+        $modele->nom_modele = $request->nom_modele;
+        $modele->user_id = Auth::id();
+
+        $modele->save();
         return redirect()->back()->with('status', 'Enregistrement reussie avec succees!!!');
     }
 
@@ -91,7 +98,11 @@ class ModeleController extends Controller
      */
     public function update(Request $request, Modele $modele)
     {
-        $modele->update($request->all());
+        $modele->marque_id = $request->marque_id;
+        $modele->nom_modele = $request->nom_modele;
+        $modele->user_id = Auth::id();
+
+        $modele->save();
         return redirect()->back()->with('status', 'Modification reussie avec succees!!!');
     }
 
