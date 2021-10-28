@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Fournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class FournisseurController extends Controller
 {
@@ -55,7 +56,14 @@ class FournisseurController extends Controller
         $request->validate([
             'nom_fournisseur' => ['required',  'max:255', 'string', 'unique:fournisseurs,nom_fournisseur']
         ]);
-        Fournisseur::create($request->all());
+        $fournisseur = new Fournisseur();
+        $fournisseur->nom_fournisseur = $request->nom_fournisseur;
+        $fournisseur->adresse_fournisseur = $request->adresse_fournisseur;
+        $fournisseur->phone_fournisseur = $request->phone_fournisseur;
+        $fournisseur->email_fournisseur = $request->email_fournisseur;
+        $fournisseur->user_id = Auth::id();
+
+        $fournisseur->save();
         return redirect()->back()->with('status', 'Enregistrement reussie avec succees!!!');
     }
 
@@ -91,7 +99,13 @@ class FournisseurController extends Controller
     public function update(Request $request, Fournisseur $fournisseur)
     {
 
-        $fournisseur->update($request->all());
+        $fournisseur->nom_fournisseur = $request->nom_fournisseur;
+        $fournisseur->adresse_fournisseur = $request->adresse_fournisseur;
+        $fournisseur->phone_fournisseur = $request->phone_fournisseur;
+        $fournisseur->email_fournisseur = $request->email_fournisseur;
+        $fournisseur->user_id = Auth::id();
+
+        $fournisseur->save();
         return redirect()->back()->with('status', 'Modification reussie avec succees!!!');
     }
 
