@@ -16,6 +16,7 @@ class CreateCarburantsTable extends Migration
         Schema::create('carburants', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('mission_id');
+            $table->unsignedBigInteger('fournisseur_id');
             $table->unsignedBigInteger('user_id');
             $table->string('type_carburant');
             $table->integer('quantite');
@@ -28,6 +29,11 @@ class CreateCarburantsTable extends Migration
             $table->foreign('mission_id')
                 ->references('id')
                 ->on('missions')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('fournisseur_id')
+                ->references('id')
+                ->on('fournisseurs')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreign('user_id')
