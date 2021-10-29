@@ -23,6 +23,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Plaque</th>
+                                        <th>Fournisseur</th>
                                         <th>Piece</th>
                                         <th>Nombre</th>
                                         <th>PriX du piece</th>
@@ -43,6 +44,16 @@
                                                 <option value="">Choisir plaque</option>
                                                 @foreach ($vehicules as $vehicule)
                                                     <option value="{{ $vehicule->id }}">{{ $vehicule->plaque }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="fournisseur_id[]" id="fournisseur_id"
+                                                class="form-control fournisseur_id">
+                                                <option value="">Choisir le fournisseur</option>
+                                                @foreach ($fournisseurs as $fournisseur)
+                                                    <option value="{{ $fournisseur->id }}">{{ $fournisseur->nom_fournisseur }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -89,7 +100,7 @@
                                 <tfoot>
                                     <tr>
                                         <th rowspan="1" colspan="1">Total</th>
-                                        <th rowspan="1" colspan="7"></th>
+                                        <th rowspan="1" colspan="8"></th>
 
                                         <th rowspan="1" colspan="1" class="total" jAutoCalc="SUM({toto_conso})">0.00
                                         </th>
@@ -141,6 +152,7 @@
                                     <th>#</th>
                                     <th>Marque</th>
                                     <th>Modele</th>
+                                    <th>Fournisseur</th>
                                     <th>Plaque</th>
                                     <th>Piece</th>
                                     <th>Nombre de piece</th>
@@ -160,6 +172,7 @@
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $reparation->nom_marque }}</td>
                                         <td>{{ $reparation->nom_modele }}</td>
+                                        <td>{{ $reparation->nom_fournisseur }}</td>
                                         <td>{{ $reparation->plaque }}</td>
                                         <td>{{ $reparation->nom_piece }}</td>
                                         <td>{{ $reparation->nombre }}pieces</td>
@@ -176,9 +189,9 @@
                                             <div class="btn-group">
                                                 <a href="reparations/{{$reparation->id }}/edit" class="btn btn-sm btn-info"><i
                                                         class="fa fa-edit"></i>Edit</a>
-                                                <a href="" class="btn btn-sm btn-danger" data-toggle="modal"
+                                                {{-- <a href="" class="btn btn-sm btn-danger" data-toggle="modal"
                                                     data-target="#deletereparation{{ $reparation->id }}"><i
-                                                        class="fa fa-trash"></i>Delete</a>
+                                                        class="fa fa-trash"></i>Delete</a> --}}
                                             </div>
                                         </td>
                                     </tr>
