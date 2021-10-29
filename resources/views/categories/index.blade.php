@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <div class="card">
                         <div class="card-head">
                             <h4 style="float: left">Ajouter la categorie</h4>
@@ -52,9 +52,9 @@
                                                     <a href="" class="btn btn-sm btn-info" data-toggle="modal"
                                                         data-target="#editcategorie{{ $category->id }}"><i
                                                             class="fa fa-edit"></i>Edit</a>
-                                                    <a href="" class="btn btn-sm btn-danger" data-toggle="modal"
+                                                    {{-- <a href="" class="btn btn-sm btn-danger" data-toggle="modal"
                                                         data-target="#deletecategorie{{ $category->id }}"><i
-                                                            class="fa fa-trash"></i>Delete</a>
+                                                            class="fa fa-trash"></i>Delete</a> --}}
                                                 </div>
                                             </td>
                                         </tr>
