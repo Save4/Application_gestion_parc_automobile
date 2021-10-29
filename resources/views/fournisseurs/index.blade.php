@@ -58,9 +58,9 @@
                                                     <a href="" class="btn btn-sm btn-info" data-toggle="modal"
                                                         data-target="#editfournisseur{{ $fournisseur->id }}"><i
                                                             class="fa fa-edit"></i>Edit</a>
-                                                    <a href="" class="btn btn-sm btn-danger" data-toggle="modal"
+                                                    {{-- <a href="" class="btn btn-sm btn-danger" data-toggle="modal"
                                                         data-target="#deletefournisseur{{ $fournisseur->id }}"><i
-                                                            class="fa fa-trash"></i>Delete</a>
+                                                            class="fa fa-trash"></i>Delete</a> --}}
                                                 </div>
                                             </td>
                                         </tr>
