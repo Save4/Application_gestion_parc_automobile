@@ -10,7 +10,7 @@
         </div>
         <div class="card shadow mb-4 border-bottom-primary">
             <div class="card-body">
-
+<img id="output"/>
                 <form action="{{ route('file.upload.post') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
@@ -96,7 +96,7 @@
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="file" name="file" class="form-control" id="input-8">
+                            <input type="file" name="file" class="form-control" id="image" onchange="loadFile(event)">
                             @error('file')
                                 <div class="alert alert-danger">
                                     <i class="fas fa-exclamation-triangle mr-1"></i>{{ $message }}
