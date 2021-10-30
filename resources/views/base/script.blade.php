@@ -80,7 +80,7 @@ les donnees proviennent de deux table  (table marque et modele)-->
 
                 },
                 error:function(){
-                    
+
 
                 }
             });
@@ -117,7 +117,7 @@ les donnees proviennent de deux table  (table marque et modele)-->
 
                 },
                 error:function(){
-                    
+
 
                 }
             });
@@ -191,7 +191,7 @@ les donnees proviennent de deux table  (table marque et modele)-->
         bsCustomFileInput.init();
     });
 </script>
-<!-- Auto chargement de l'etat du vehicule apres avoir selection ca plaque 
+<!-- Auto chargement de l'etat du vehicule apres avoir selection ca plaque
 les donnees sont du meme table -->
 <script type="text/JavaScript">
     $(document).ready(function(){
@@ -206,11 +206,11 @@ les donnees sont du meme table -->
                 dataType:'json',
                 success:function(data){
                     console.log('hello')
-                    et.find('#etat').val(data.etat); 
+                    et.find('#etat').val(data.etat);
 
                 },
                 error:function(){
-                    
+
 
                 }
             });
@@ -234,11 +234,11 @@ les donnees sont du meme table -->
                 success:function(data){
                     /* console.log(data)
                     console.log(data.etat_mission) */
-                    et.find('#etat_mission').val(data.etat_mission); 
+                    et.find('#etat_mission').val(data.etat_mission);
 
                 },
                 error:function(){
-                    
+
 
                 }
             });
@@ -248,6 +248,11 @@ les donnees sont du meme table -->
 });
 </script>
 
-<script>
+<script type="text/javascript">
+
+let loadFile = function(event){
+  let output = document.getElementById('output');
+  output.src = URL.createObjectURL(event.target.files[0]);
+};
 
 </script>
