@@ -66,8 +66,10 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    @can('user-list')
                                 <a class="dropdown-item" href="{{ route('users.index') }}">Liste des utilisateurs</a>
                                 <a class="dropdown-item" href="{{ route('roles.index') }}">Liste des roles</a>
+                                @endcan
                                 </div>
                             </li>
                         @endguest
