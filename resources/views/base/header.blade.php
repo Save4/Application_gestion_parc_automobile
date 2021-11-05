@@ -25,7 +25,9 @@
                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         class="nav-link dropdown-toggle">Missions</a>
                     <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                   @can('mission-list')
                         <li><a href="{{ url('missions') }}" class="dropdown-item">Missions </a></li>
+                        @endcan
                         <li class="dropdown-divider"></li>
 
 
@@ -36,10 +38,18 @@
                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         class="nav-link dropdown-toggle">Consommations</a>
                     <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                      @can('document-list')
                         <li><a href="{{ url('documents') }}" class="dropdown-item">Documents </a></li>
+                        @endcan
+                        @can('carburant-list')
                         <li><a href="{{ url('carburants') }}" class="dropdown-item">Carburents </a></li>
+                        @endcan
+                        @can('piece-list')
                         <li><a href="{{ url('pieces') }}" class="dropdown-item">Pieces </a></li>
+                        @endcan
+                        @can('reparation-list')
                         <li><a href="{{ url('reparations') }}" class="dropdown-item">Reparations </a></li>
+                        @endcan
                         <li class="dropdown-divider"></li>
 
 
@@ -69,11 +79,11 @@
                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-                            @can('user-list')
+
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-                            
+                            @can('user-list')
                                 <div>
                                     <a class="dropdown-item" href="{{ route('users.index') }}">Liste des utilisateurs</a>
                                     <a class="dropdown-item" href="{{ route('roles.index') }}">Liste des roles</a>
