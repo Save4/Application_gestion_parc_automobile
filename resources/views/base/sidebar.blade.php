@@ -24,30 +24,38 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                      @can('marque-list')
                         <li class="nav-item">
                             <a href="{{ url('marques') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Marque</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('modele-list')
                         <li class="nav-item">
                             <a href="{{ url('modeles') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Modele</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('category-list')
                         <li class="nav-item">
                             <a href="{{ url('categories') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Categorie</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('vehicule-list')
                         <li class="nav-item">
                             <a href="{{ url('vehicules') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Vehicules</p>
                             </a>
                         </li>
+                        @endcan
                     </ul>
                 </li>
 
@@ -59,6 +67,7 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    @can('departement-list')
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ url('departements') }}" class="nav-link">
@@ -67,6 +76,7 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
                 </li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
@@ -77,19 +87,22 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                      @can('chauffeur-list')
                         <li class="nav-item">
                             <a href="{{ url('chauffeurs') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Chauffeurs</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('mission-list')
                         <li class="nav-item">
                             <a href="{{ url('missions') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Missions</p>
                             </a>
                         </li>
-
+                       @endcan
                     </ul>
                 </li>
                 <li class="nav-item has-treeview">
@@ -101,36 +114,46 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                      @can('fournisseur-list')
                         <li class="nav-item">
                             <a href="{{ url('fournisseurs') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Fournisseurs</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('document-list')
                         <li class="nav-item">
                             <a href="{{ url('documents') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Documents</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('carburant-list')
                         <li class="nav-item">
                             <a href="{{ url('carburants') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Carburant</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('piece-list')
                         <li class="nav-item">
                             <a href="{{ url('pieces') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pieces</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('reparation-list')
                         <li class="nav-item">
                             <a href="{{ url('reparations') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Reparations</p>
                             </a>
                         </li>
+                        @endcan
                     </ul>
                 </li>
 
