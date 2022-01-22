@@ -57,6 +57,9 @@ class ModeleController extends Controller
      */
     public function store(Request $request)
     {
+      $request->validate([
+        'nom_modele' => ['required',  'max:255', 'string', 'unique:modeles,nom_modele']
+      ]);
         $modele = new Modele();
 
         $modele->marque_id = $request->marque_id;
