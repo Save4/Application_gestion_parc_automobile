@@ -10,7 +10,7 @@
                         <div class="card-head">
                             <h4 style="float: left">Ajouter le fournisseur</h4>
                             <a href="" style="float: right" class="btn btn-primary" data-toggle="modal"
-                                data-target="#addmarque">
+                                data-target="#addfournisseur">
                                 <i class="fa fa-plus"></i>Ajouter le fournisseur</a>
                         </div>
                         @error('nom_fournisseur')
