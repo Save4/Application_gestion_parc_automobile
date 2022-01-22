@@ -97,27 +97,24 @@
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="input-27">Plaque</label>
-                            <select name="vehicule_id" id="missio_id" class="select2_single form-control plaque"
-                                tabindex="-1" class="@error('vehicule_id') is-invalid @enderror">
-                                <option value="0" disabled="true" selected="true">Selectionner la plaque</option>
-                                @foreach ($vehicules as $vehicule)
-                                    <option value="{{ $vehicule->id }}">
-                                        {{ $vehicule->plaque }} est {{ $vehicule->etat }}</option>
-                                @endforeach
-                                @error('vehicule_id')
-                                    <button class="btn-danger">{{ $message }}</button>
-                                @enderror
-                            </select>
+                          <label for="vehicule_id" class="form-control-label">Plaque du vehicule</label>
+                          <select class="form-control vehicule_id" id="vehicule_id" name="vehicule_id">
+                              <option>Choisir la plaque</option>
+                              @foreach ($vehicules as $vehicule)
+                                  <option data-price="{{ $vehicule->etat }}" value="{{ $vehicule->id }}">
+                                      {{ $vehicule->plaque }}</option>
+                              @endforeach
+                              @error('vehicule_id')
+                                  <div class="alert alert-danger">
+                                      <i class="fas fa-exclamation-triangle mr-1"></i>{{ $message }}
+                                  </div>
+                              @enderror
+                          </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="input-27">Etat de la mission</label>
-                            <select name="etat_mission" id="" class="form-control">
-                                <option>Selectionner l'etat de la mission</option>
-                                <option>En cours</option>
-                                <option>Suspendu</option>
-                                <option>Terminer</option>
-                            </select>
+                          <label class="form-control-label">Etat du vehicule</label>
+                          <input id="" type="text" placeholder="Autochargement de l'etat"
+                              class="form-control form-control-sm etat" disabled>
                         </div>
                     </div>
                     <div class="form-row">
@@ -151,7 +148,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <label for="input-28">Mission</label>
                             <input type="text" name="type_mission" id="first-name" required="required"
                                 class="form-control " class="@error('type_mission') is-invalid @enderror"
@@ -159,6 +156,15 @@
                             @error('type_mission')
                                 <button class="btn-danger">{{ $message }}</button>
                             @enderror
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="input-27">Etat de la mission</label>
+                            <select name="etat_mission" id="" class="form-control">
+                                <option>Selectionner l'etat de la mission</option>
+                                <option>En cours</option>
+                                <option>Suspendu</option>
+                                <option>Terminer</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
@@ -219,17 +225,12 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="input-27">Departement</label>
-                            <select name="departement_id" id="departement_id" class="select2_single form-control"
-                                tabindex="-1" class="@error('departement_id') is-invalid @enderror">
-                                <option value="0" disabled="true" selected="true">Selectionner le departement</option>
-                                @foreach ($departements as $departement)
-                                    <option value="{{ $departement->id }}" {!! $mission->departement_id == $departement->id ? 'selected="selected"' : '' !!}>
-                                        {{ $departement->nom_departement }}</option>
-                                @endforeach
-                                @error('departement_id')
-                                    <button class="btn-danger">{{ $message }}</button>
-                                @enderror
+                            <label for="input-27">Etat du vehicule</label>
+                            <select name="etat_mission" id="" class="form-control">
+                                <option>{{ $mission->etat_mission }}</option>
+                                <option>En cours</option>
+                                <option>Suspendu</option>
+                                <option>Terminer</option>
                             </select>
                         </div>
                     </div>
@@ -249,17 +250,31 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="input-28">Mission</label>
-                            <input type="text" name="type_mission" id="first-name" required="required"
-                                class="form-control " class="@error('type_mission') is-invalid @enderror" placeholder=""
-                                value="{{ $mission->type_mission }}">
-                            @error('type_mission')
-                                <button class="btn-danger">{{ $message }}</button>
-                            @enderror
+                            <label for="input-27">Departement</label>
+                            <select name="departement_id" id="departement_id" class="select2_single form-control"
+                                tabindex="-1" class="@error('departement_id') is-invalid @enderror">
+                                <option value="0" disabled="true" selected="true">Selectionner le departement</option>
+                                @foreach ($departements as $departement)
+                                    <option value="{{ $departement->id }}" {!! $mission->departement_id == $departement->id ? 'selected="selected"' : '' !!}>
+                                        {{ $departement->nom_departement }}</option>
+                                @endforeach
+                                @error('departement_id')
+                                    <button class="btn-danger">{{ $message }}</button>
+                                @enderror
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-12">
+                      <div class="form-group col-md-6">
+                          <label for="input-28">Mission</label>
+                          <input type="text" name="type_mission" id="first-name" required="required"
+                              class="form-control " class="@error('type_mission') is-invalid @enderror" placeholder=""
+                              value="{{ $mission->type_mission }}">
+                          @error('type_mission')
+                              <button class="btn-danger">{{ $message }}</button>
+                          @enderror
+                      </div>
+                        <div class="form-group col-md-6">
                             <label for="input-27">Etat de la mission</label>
                             <select name="etat_mission" id="" class="form-control">
                                 <option>{{ $mission->etat_mission }}</option>
