@@ -14,13 +14,6 @@
 <script src="{{ asset('js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('js/buttons.colVis.min.js') }}"></script>
 
-{{-- <script>
-    var route = "{{ URL::to('/') }}";
-</script> --}}
-<script src="{{ asset('js/autoCharge.js') }}"></script>
-<script src="{{ asset('js/prixachat.js') }}"></script>
-<script src="{{ asset('js/prixvente.js') }}"></script>-->
-
 <script>
     $(document).ready(function() {
         //Default data table
@@ -198,14 +191,14 @@ les donnees sont du meme table -->
 
         $(document).on('change','#vehicule_id',function(){
             let plak=$(this).val();
-            let et=$(this).parent().parent();
+            let et=$(this).parent().parent().parent();
             $.ajax({
                 type:'get',
                 url:'{!! URL::to('findEtat') !!}',
                 data:{'id':plak},
                 dataType:'json',
                 success:function(data){
-                    console.log('hello')
+                    //Sconsole.log('hello')
                     et.find('#etat').val(data.etat);
 
                 },
