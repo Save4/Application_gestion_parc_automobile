@@ -97,24 +97,24 @@
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                          <label for="vehicule_id" class="form-control-label">Plaque du vehicule</label>
-                          <select class="form-control vehicule_id" id="vehicule_id" name="vehicule_id">
-                              <option>Choisir la plaque</option>
-                              @foreach ($vehicules as $vehicule)
-                                  <option data-price="{{ $vehicule->etat }}" value="{{ $vehicule->id }}">
-                                      {{ $vehicule->plaque }}</option>
-                              @endforeach
-                              @error('vehicule_id')
-                                  <div class="alert alert-danger">
-                                      <i class="fas fa-exclamation-triangle mr-1"></i>{{ $message }}
-                                  </div>
-                              @enderror
-                          </select>
+                            <label for="vehicule_id" class="form-control-label">Plaque du vehicule</label>
+                            <select class="form-control" id="vehi_id" name="vehicule_id">
+                                <option>Choisir la plaque</option>
+                                @foreach ($vehicules as $vehicule)
+                                    <option value="{{ $vehicule->id }}">
+                                        {{ $vehicule->plaque }}</option>
+                                @endforeach
+                                @error('vehicule_id')
+                                    <div class="alert alert-danger">
+                                        <i class="fas fa-exclamation-triangle mr-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
-                          <label class="form-control-label">Etat du vehicule</label>
-                          <input id="" type="text" placeholder="Autochargement de l'etat"
-                              class="form-control form-control-sm etat" disabled>
+                            <label class="form-control-label">Etat du vehicule</label>
+                            <input id="etat" type="text" placeholder="Autochargement de l'etat"
+                                class="form-control form-control-sm" disabled>
                         </div>
                     </div>
                     <div class="form-row">
@@ -164,6 +164,7 @@
                                 <option>En cours</option>
                                 <option>Suspendu</option>
                                 <option>Terminer</option>
+                                <option>Parking</option>
                             </select>
                         </div>
                     </div>
@@ -179,8 +180,9 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="input-28">Date de fin</label>
-                            <input type="date" name="date_fin" id="first-name" required="required" class="form-control "
-                                class="@error('date_fin') is-invalid @enderror" placeholder="" value="">
+                            <input type="date" name="date_fin" id="first-name" required="required"
+                                class="form-control " class="@error('date_fin') is-invalid @enderror" placeholder=""
+                                value="">
                             @error('date_fin')
                                 <button class="btn-danger">{{ $message }}</button>
                             @enderror
@@ -265,15 +267,15 @@
                         </div>
                     </div>
                     <div class="form-row">
-                      <div class="form-group col-md-6">
-                          <label for="input-28">Mission</label>
-                          <input type="text" name="type_mission" id="first-name" required="required"
-                              class="form-control " class="@error('type_mission') is-invalid @enderror" placeholder=""
-                              value="{{ $mission->type_mission }}">
-                          @error('type_mission')
-                              <button class="btn-danger">{{ $message }}</button>
-                          @enderror
-                      </div>
+                        <div class="form-group col-md-6">
+                            <label for="input-28">Mission</label>
+                            <input type="text" name="type_mission" id="first-name" required="required"
+                                class="form-control " class="@error('type_mission') is-invalid @enderror"
+                                placeholder="" value="{{ $mission->type_mission }}">
+                            @error('type_mission')
+                                <button class="btn-danger">{{ $message }}</button>
+                            @enderror
+                        </div>
                         <div class="form-group col-md-6">
                             <label for="input-27">Etat de la mission</label>
                             <select name="etat_mission" id="" class="form-control">
@@ -296,8 +298,8 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="input-28">Date de fin</label>
-                            <input type="date" name="date_fin" id="first-name" required="required" class="form-control "
-                                class="@error('date_fin') is-invalid @enderror" placeholder=""
+                            <input type="date" name="date_fin" id="first-name" required="required"
+                                class="form-control " class="@error('date_fin') is-invalid @enderror" placeholder=""
                                 value="{{ $mission->date_fin }}">
                             @error('date_fin')
                                 <button class="btn-danger">{{ $message }}</button>
@@ -315,8 +317,8 @@
 </div>
 <!-- modal of delete product-->
 
-<div class="modal right fade" id="deletemission{{ $mission->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
-    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal right fade" id="deletemission{{ $mission->id }}" data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary">
