@@ -100,8 +100,8 @@ class MissionController extends Controller
 
     public function findEtat(Request $request)
     {
-        $data = Vehicule::select('etat')->where('id', $request->id)->first();
+        $etatVehi = Vehicule::select('etat')->where('id', $request->id)->first();
         //it will get etat if its id match with vehicule id
-        return response()->json($data);
+        return response()->json($etatVehi);
     }
 }
