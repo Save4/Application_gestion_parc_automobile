@@ -189,17 +189,17 @@ les donnees sont du meme table -->
 <script type="text/JavaScript">
     $(document).ready(function(){
 
-        $(document).on('change','#vehicule_id',function(){
+        $(document).on('change','#vehi_id',function(){
             let plak=$(this).val();
             let et=$(this).parent().parent().parent();
             $.ajax({
                 type:'get',
                 url:'{!! URL::to('findEtat') !!}',
-                data:{'id':plak},
+                etatVehi:{'id':plak},
                 dataType:'json',
-                success:function(data){
-                    //Sconsole.log('hello')
-                    et.find('#etat').val(data.etat);
+                success:function(etatVehi){
+                    console.log('hello')
+                    et.find('#etat').val(etatVehi.etat);
 
                 },
                 error:function(){
