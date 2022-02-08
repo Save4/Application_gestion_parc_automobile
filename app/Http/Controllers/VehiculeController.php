@@ -103,8 +103,19 @@ class VehiculeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Vehicule $vehicule)
-    {
-        //
+    {$users = User::all();
+        $marques = Marque::all();
+        $modeles = Modele::all();
+        $categories = Category::all();
+        $vehicules = Vehicule::all();
+        $vehicule = Vehicule::find($vehicule->id);
+        return view('vehicules.edit', [
+            'vehicule' => $vehicule,
+            'marques' => $marques,
+            'modeles' => $modeles,
+            'users' => $users,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -140,7 +151,7 @@ class VehiculeController extends Controller
         $vehicule->user_id = Auth::id();
 
         $vehicule->save();
-        return redirect()->back()->with('success', 'Product updated successfully');
+        return redirect('vehicules');
     }
 
     /**
@@ -152,7 +163,7 @@ class VehiculeController extends Controller
     public function destroy(Vehicule $vehicule)
     {
         $vehicule->delete();
-        return redirect()->back()->with('status', 'Suppression reussie avec succees!!!');
+        return redirect('vehicules')->with('status', 'Suppression reussie avec succees!!!');
     }
 
     public function chargeMarque(Request $request)
