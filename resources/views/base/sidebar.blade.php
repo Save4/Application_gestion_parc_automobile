@@ -58,7 +58,7 @@
                         @endcan
                     </ul>
                 </li>
-
+                @can('departement-list')
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-university"></i>
@@ -67,17 +67,18 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    @can('departement-list')
+                   
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('departements') }}" class="nav-link">
+                            <a href="{{ url('departements.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Departements</p>
                             </a>
                         </li>
                     </ul>
-                    @endcan
+                    
                 </li>
+                @endcan
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-users"></i>
