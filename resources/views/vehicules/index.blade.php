@@ -67,9 +67,10 @@
                                         <td>{{ $vehicule->name }}</td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="" data-toggle="modal"
+                                                <a href="vehicules/{{$vehicule->id}}/edit" class="fa fa-edit" title="Edit"></i></a>
+                                                {{-- <a href="" data-toggle="modal"
                                                     data-target="#editvehicule{{ $vehicule->id }}"><i
-                                                        class="fa fa-edit" title="Edit"></i></a>
+                                                        class="fa fa-edit" title="Edit"></i></a> --}}
                                                 {{-- <a href="" data-toggle="modal"
                                                     data-target="#deletevehicule{{ $vehicule->id }}"><i
                                                         class="fa fa-trash" title="Delete"></i></a> --}}
@@ -218,7 +219,7 @@
 </div>
 <!-- modal of edit product-->
 
-<div class="modal right fade" id="editvehicule{{ $vehicule->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
+{{-- <div class="modal right fade" id="editvehicule{{ $vehicule->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -349,7 +350,7 @@
 
         </div>
     </div>
-</div>
+</div> --}}
 <!-- modal of delete product-->
 
 <div class="modal right fade" id="deletevehicule{{ $vehicule->id }}" data-bs-backdrop="static"
