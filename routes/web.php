@@ -57,7 +57,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/voir{id}', [DocumentController::class, 'voir']);
     Route::get('/telecharger{file}', [DocumentController::class, 'telecharger']);
     Route::resource('missions', MissionController::class);
-    Route::get('/findEtat', [MissionController::class, 'findEtat']);
+    Route::get('/findEtatVehicule', [MissionController::class, 'findEtatVehicule']);
     Route::resource('carburants', CarburantController::class);
     Route::get('/findMission', [CarburantController::class, 'findMission']);
     Route::get('/findEtat', [CarburantController::class, 'findEtat']);
