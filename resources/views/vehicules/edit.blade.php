@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4 bg-primary">
-        <h1 class="h3 mb-2 text-gray-800" style="float: left">Modifier unvehicule</h1>
+        <h1 class="h3 mb-2 text-gray-800" style="float: left">Modifier un vehicule</h1>
         <!--<button type="submit" class="btn btn-dark btn-sm" style="float: right">Cr&eacute;er</button>-->
     </div>
     <div class="card shadow mb-4 border-bottom-primary">
@@ -121,10 +121,12 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button href="{{ url('vehicules') }} type="submit" class="btn btn-primary shadow-primary m-1"><i class="fa fa-backward"></i>
+                                ABANDONNER LA MODIFICATION</button>
                     <button type="submit" onclick="return confirm('Voulez vous modifier le vehicule ?')"
                              class="btn btn-success shadow-success m-1"><i
                                     class="fa fa-check-square-o"></i>
-                                MODIFIER</button>
+                                CONFIRMER LA MODIFICATION</button>
                 </div>
             </form>
         </div>
