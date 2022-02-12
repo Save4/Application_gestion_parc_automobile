@@ -134,7 +134,7 @@
                     @csrf
                     @method('put')
                     <div class="form-group">
-                        <label for="">Marque</label>
+                        <label for="">Fournisseur</label>
                         <select class="form-control @error('nom_fournisseur') is-danger @enderror" name="fournisseur_id"
                             id="fournisseur_id">
                             @foreach ($fournisseurs as $fournisseur)
@@ -190,7 +190,6 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>
