@@ -73,7 +73,19 @@ class MissionController extends Controller
 
     public function edit(Mission $mission)
     {
-        //
+        $users = User::all();
+        $departements = Departement::all();
+        $chauffeurs = Chauffeur::all();
+        $vehicules = Vehicule::all();
+        $mission = Mission::find($mission->id);
+        return view('missions.edit', [
+            'mission' => $mission,
+            'vehicules' => $vehicules,
+            'departements' => $departements,
+            'chauffeurs' => $chauffeurs,
+            'users' => $users,
+            
+        ]);
     }
 
     public function update(Request $request, Mission $mission)
@@ -88,7 +100,7 @@ class MissionController extends Controller
         $mission->user_id = Auth::id();
 
         $mission->save();
-        return redirect()->back()->with('status', 'Modification reussie avec succees!!!');
+        return redirect('missions');
     }
 
 
@@ -98,10 +110,10 @@ class MissionController extends Controller
         return redirect()->back()->with('status', 'Suppression reussie avec succees!!!');
     }
 
-    public function findEtat(Request $request)
+    public function findEtatVehicule(Request $request)
     {
         $etatVehi = Vehicule::select('etat')->where('id', $request->id)->first();
-        //it will get etat if its id match with vehicule id
+        //it will get etat if its id match with vehicule id.
         return response()->json($etatVehi);
     }
 }
