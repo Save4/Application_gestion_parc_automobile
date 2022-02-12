@@ -64,9 +64,10 @@
                                         <td>{{ $mission->name }}</td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="" class="btn btn-sm btn-info" data-toggle="modal"
+                                                <a href="missions/{{$mission->id}}/edit" class="fa fa-edit" title="Edit"></i></a>
+                                               {{--  <a href="" class="btn btn-sm btn-info" data-toggle="modal"
                                                     data-target="#editmission{{ $mission->id }}"><i
-                                                        class="fa fa-edit"></i>Edit</a>
+                                                        class="fa fa-edit"></i>Edit</a> --}}
                                                 {{-- <a href="" class="btn btn-sm btn-danger" data-toggle="modal"
                                                     data-target="#deletemission{{ $mission->id }}"><i
                                                         class="fa fa-trash"></i>Delete</a> --}}
@@ -98,7 +99,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="vehicule_id" class="form-control-label">Plaque du vehicule</label>
-                            <select class="form-control" id="vehi_id" name="vehicule_id">
+                            <select class="form-control" id="vehi_mis_id" name="vehicule_id">
                                 <option>Choisir la plaque</option>
                                 @foreach ($vehicules as $vehicule)
                                     <option value="{{ $vehicule->id }}">
@@ -114,7 +115,7 @@
                         <div class="form-group col-md-6">
                             <label class="form-control-label">Etat du vehicule</label>
                             <input id="etat" type="text" placeholder="Autochargement de l'etat"
-                                class="form-control form-control-sm" disabled>
+                                class="form-control-sm etatVehicule" disabled>
                         </div>
                     </div>
                     <div class="form-row">
@@ -199,7 +200,7 @@
 </div>
 <!-- modal of edit product-->
 
-<div class="modal right fade" id="editmission{{ $mission->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
+{{-- <div class="modal right fade" id="editmission{{ $mission->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -314,10 +315,10 @@
 
         </div>
     </div>
-</div>
+</div> --}}
 <!-- modal of delete product-->
 
-<div class="modal right fade" id="deletemission{{ $mission->id }}" data-bs-backdrop="static"
+{{-- <div class="modal right fade" id="deletemission{{ $mission->id }}" data-bs-backdrop="static"
     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -339,5 +340,5 @@
 
         </div>
     </div>
-</div>
+</div> --}}
 @endsection
