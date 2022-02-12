@@ -189,17 +189,17 @@ les donnees sont du meme table -->
 <script type="text/JavaScript">
     $(document).ready(function(){
 
-        $(document).on('change','#vehi_id',function(){
+        $(document).on('change','#vehi_mis_id',function(){
             let plak=$(this).val();
             let et=$(this).parent().parent().parent();
             $.ajax({
                 type:'get',
-                url:'{!! URL::to('findEtat') !!}',
-                etatVehi:{'id':plak},
+                url:'{!! URL::to('findEtatVehicule') !!}',
+                data:{'id':plak},
                 dataType:'json',
-                success:function(etatVehi){
+                success:function(data){
                     console.log('hello')
-                    et.find('#etat').val(etatVehi.etat);
+                    et.find('.etatVehicule').val(data.etat);
 
                 },
                 error:function(){
@@ -213,7 +213,7 @@ les donnees sont du meme table -->
 });
 </script>
 {{-- table mission selection d'autres donnees --}}
-<script type="text/JavaScript">
+{{-- <script type="text/JavaScript">
     $(document).ready(function(){
 
         $(document).on('change','#missio_id',function(){
@@ -239,7 +239,7 @@ les donnees sont du meme table -->
         });
 
 });
-</script>
+</script> --}}
 
 <script type="text/javascript">
 
