@@ -58,27 +58,6 @@
                         @endcan
                     </ul>
                 </li>
-                @can('departement-list')
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-university"></i>
-                        <p>
-                            Departements
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                   
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ url('departements.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Departements</p>
-                            </a>
-                        </li>
-                    </ul>
-                    
-                </li>
-                @endcan
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-users"></i>
@@ -95,6 +74,14 @@
                                 <p>Chauffeurs</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('departement-list')
+                            <li class="nav-item">
+                                <a href="{{ url('departements') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Departements</p>
+                                </a>
+                            </li>
                         @endcan
                         @can('mission-list')
                         <li class="nav-item">
