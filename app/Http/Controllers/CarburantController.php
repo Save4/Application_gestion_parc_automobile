@@ -75,7 +75,19 @@ class CarburantController extends Controller
 
     public function edit(Carburant $carburant)
     {
-        //
+        $users = User::all();
+        $fournisseurs = Fournisseur::all();
+        $missions = Mission::all();
+        $vehicules = Vehicule::all();
+        $carburant = Carburant::find($carburant->id);
+        return view('carburants.edit', [
+            'carburant' => $carburant,
+            'vehicules' => $vehicules,
+            'fournisseurs' => $fournisseurs,
+            'missions' => $missions,
+            'users' => $users,
+            
+        ]);
     }
 
 
@@ -93,7 +105,7 @@ class CarburantController extends Controller
         $carburant->user_id = Auth::id();
 
         $carburant->save();
-        return redirect()->back()->with('status', 'Modification reussie avec succees!!!');
+        return redirect('carburants');
     }
 
     public function destroy(Carburant $carburant)
@@ -109,10 +121,15 @@ class CarburantController extends Controller
         //$request->id here is the id of our chosen option id
         return response()->json($data); //then sent this data to ajax success
     }
-    public function findEtat(Request $request)
+    public function findEtatMission(Request $request)
     {
-        $data = Mission::select('etat_mission')->where('id', $request->id)->first();
-        //it will get etat if its id match with vehicule id
-        return response()->json($data);
+        $etatMis = Mission::select('etat_mission')->where('id', $request->id)->first();
+        return response()->json($etatMis);
+    }
+    public function findEtatVehicule(Request $request)
+    {
+        $etatVehi = Vehicule::select('etat')->where('id', $request->id)->first();
+        //it will get etat if its id match with vehicule id.
+        return response()->json($etatVehi);
     }
 }
