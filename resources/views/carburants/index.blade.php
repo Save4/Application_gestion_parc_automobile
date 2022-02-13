@@ -68,9 +68,10 @@
                                         <td>{{ $carburant->name }}
                                         <td>
                                             <div class="btn-group">
-                                                <a href="" data-toggle="modal"
+                                                {{-- <a href="" data-toggle="modal"
                                                     data-target="#editcarburant{{ $carburant->id }}"><i
-                                                        class="fa fa-edit" title="Edit"></i></a>
+                                                        class="fa fa-edit" title="Edit"></i></a> --}}
+                                                <a href="carburants/{{$carburant->id}}/edit" class="fa fa-edit" title="Edit"></i></a>
                                                 {{-- <a href="" data-toggle="modal"
                                                     data-target="#deletecarburant{{ $carburant->id }}"><i
                                                         class="fa fa-trash" title="Delete"></i></a> --}}
@@ -101,21 +102,30 @@
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="input-27">Plaque</label>
-                            <select name="vehicule_id" id="vehicul_id" class="form-control vehicul_id">
-                                <option value="0" disabled="true" selected="true">Selectionner la plaque</option>
+                            <label for="vehicule_id" class="form-control-label">Plaque du vehicule</label>
+                            <select class="form-control vehi_mis" id="vehi_mis_id" name="vehicule_id">
+                                <option>Choisir la plaque</option>
                                 @foreach ($vehicules as $vehicule)
-                                    <option value="{{ $vehicule->id }}">{{ $vehicule->plaque }} est
-                                        {{ $vehicule->etat }}</option>
+                                    <option value="{{ $vehicule->id }}">
+                                        {{ $vehicule->plaque }}</option>
                                 @endforeach
                                 @error('vehicule_id')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger">
+                                        <i class="fas fa-exclamation-triangle mr-1"></i>{{ $message }}
+                                    </div>
                                 @enderror
                             </select>
                         </div>
                         <div class="form-group col-md-6">
+                            <label class="form-control-label">Etat du vehicule</label>
+                            <input id="etat" type="text" placeholder="Autochargement de l'etat"
+                                class="form-control-sm etatVehicule" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
                             <label for="input-28">Mission</label>
-                            <select name="mission_id" id="missio_id" class="form-control missio_id" tabindex="-1"
+                            <select name="mission_id" id="missio_id" class="form-control mission" tabindex="-1"
                                 class="@error('mission_id') is-invalid @enderror">
                                 <option value="0" disabled="true" selected="true">Selectionner la mission</option>
 
@@ -124,14 +134,15 @@
                                 @enderror
                             </select>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col col-md-4 form-group">
+                        <div class="col col-md-6 form-group">
                             <label class="form-control-label">Etat de la mission</label>
                             <input type="text" placeholder="Autochargement de l'etat"
                                 class="form-control form-control-sm etat_mission" disabled id="etat_mission">
                         </div>
-                        <div class="form-group col-md-4">
+                        
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
                             <label for="input-27">Carburant</label>
                             <select name="type_carburant" id="type_carburant" class="form-control" tabindex="-1"
                                 class="@error('type_carburant') is-invalid @enderror">
@@ -143,7 +154,7 @@
                                 @enderror
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="input-27">Fournisseur</label>
                             <select name="fournisseur_id" id="" class="form-control">
                                 <option value="0" disabled="true" selected="true">Selectionner le fournisseur</option>
@@ -157,8 +168,9 @@
                         </div>
                     </div>
                     <div class="form-row">
+                        
                         <div class="form-group col-md-6">
-                            <label for="input-28">Prix unitaire en FraBu</label>
+                            <label for="input-28">PU en FraBu</label>
                             <input type="number" name="prix_unitaire" id="unit" required="required"
                                 class="form-control prix_unitaire" class="@error('prix_unitaire') is-invalid @enderror"
                                 placeholder="" value="">
@@ -167,7 +179,7 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="input-28">Quantite en L</label>
+                            <label for="input-28">Qte en L</label>
                             <input type="number" name="quantite" id="quantit" required="required"
                                 class="form-control quantite" class="@error('quantite') is-invalid @enderror"
                                 placeholder="" value="">
@@ -177,8 +189,8 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="input-27">Prix total en FraBu</label>
+                        <div class="form-group col-md-4">
+                            <label for="input-27">PT en FraBu</label>
                             <input type="number" name="prix_total" id="prix_total" required="required"
                                 class="form-control prix_total" class="@error('prix_total') is-invalid @enderror"
                                 placeholder="" value="" disabled>
@@ -186,17 +198,15 @@
                                 <button class="btn-danger">{{ $message }}</button>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="input-28">Distance parcourue en Km</label>
+                        <div class="form-group col-md-4">
+                            <label for="input-28">Distance en Km</label>
                             <input type="number" name="distance" id="distance" required="required" class="form-control "
                                 class="@error('distance') is-invalid @enderror" placeholder="" value="">
                             @error('distance')
                                 <button class="btn-danger">{{ $message }}</button>
                             @enderror
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="input-27">Km/L</label>
                             <input type="number" name="distance_littre" id="distance_littre" required="required"
                                 class="form-control " class="@error('distance_littre') is-invalid @enderror"
@@ -205,16 +215,8 @@
                                 <button class="btn-danger">{{ $message }}</button>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="input-28">Date d'Enregistrement</label>
-                            <input type="date" name="date_conso" id="date_conso" required="required"
-                                class="form-control " class="@error('date_conso') is-invalid @enderror" placeholder=""
-                                value="">
-                            @error('date_conso')
-                                <button class="btn-danger">{{ $message }}</button>
-                            @enderror
-                        </div>
                     </div>
+                  
                     <div class="modal-footer">
                         <button type="" name="" id="" class="btn btn-primary btn-block">Enregistre</button>
                     </div>
