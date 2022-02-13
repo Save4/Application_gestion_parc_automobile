@@ -52,7 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/fileUpload', [DocumentController::class, 'fileUpload'])->name('file.upload');
     Route::post('/fileUploadPost', [DocumentController::class, 'fileUploadPost'])->name('file.upload.post');
     Route::resource('documents', DocumentController::class);
-    Route::get('/findEtat', [DocumentController::class, 'findEtat']);
+    Route::get('/findEtatVehicule', [DocumentController::class, 'findEtatVehicule']);
     Route::get('/show', [DocumentController::class, 'show']);
     Route::get('/voir{id}', [DocumentController::class, 'voir']);
     Route::get('/telecharger{file}', [DocumentController::class, 'telecharger']);
@@ -60,7 +60,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/findEtatVehicule', [MissionController::class, 'findEtatVehicule']);
     Route::resource('carburants', CarburantController::class);
     Route::get('/findMission', [CarburantController::class, 'findMission']);
-    Route::get('/findEtat', [CarburantController::class, 'findEtat']);
+    Route::get('/findEtatMission', [CarburantController::class, 'findEtatMission']);
+    Route::get('/findEtatVehicule', [CarburantController::class, 'findEtatVehicule']);
     Route::resource('pieces', PieceController::class);
     Route::resource('fournisseurs', FournisseurController::class);
     Route::resource('reparations', ReparationController::class);
