@@ -82,43 +82,6 @@ les donnees proviennent de deux table  (table marque et modele)-->
 
 });
 </script>
-{{-- table mission et vehicule --}}
-<script type="text/JavaScript">
-    $(document).ready(function(){
-
-        $(document).on('change','.vehicul_id',function(){
-            //console.log("hmm its change");
-            let vehicule=$(this).val();
-            let div=$(this).parent().parent();
-            let op="";
-            //console.log(vehicule);
-            $.ajax({
-                type:'get',
-                url:'{!! URL::to('findMission') !!}',
-                data:{'id':vehicule},
-                success:function(data){
-                    //console.log('success');
-                    //console.log(data);
-                    //console.log(data.length);
-                    op+='<option value="0" selected="true" disabled="true">Choisir la mission</option>';
-                    for (let i = 0; i < data.length; i++) {
-                    op+='<option value="'+data[i].id+'">'+data[i].type_mission+'</option>';
-
-                    div.find('#missio_id').html("");
-                    div.find('#missio_id').append(op);
-                    }
-
-                },
-                error:function(){
-
-
-                }
-            });
-
-        });
-
-});
-</script>
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
 <script>
     let ENDPOINT = "{{ url('/') }}";
@@ -184,6 +147,37 @@ les donnees proviennent de deux table  (table marque et modele)-->
         bsCustomFileInput.init();
     });
 </script>
+<script type="text/JavaScript">
+    $(document).ready(function(){
+
+        $(document).on('change','.vehi_mis',function(){
+            let miss=$(this).val();
+            let mission=$(this).parent().parent().parent();
+            let op="";
+            $.ajax({
+                type:'get',
+                url:'{!! URL::to('findMission') !!}',
+                data:{'id':miss},
+                success:function(data){
+                    op+='<option value="0" selected="true" disabled="true">Choisir la mission</option>';
+                    for (let i = 0; i < data.length; i++) {
+                    op+='<option value="'+data[i].id+'">'+data[i].type_mission+'</option>';
+
+                    mission.find('.mission').html("");
+                    mission.find('.mission').append(op);
+                    }
+
+                },
+                error:function(){
+
+
+                }
+            });
+
+        });
+
+});
+</script>
 <!-- Auto chargement de l'etat du vehicule apres avoir selection ca plaque
 les donnees sont du meme table -->
 <script type="text/JavaScript">
@@ -198,48 +192,36 @@ les donnees sont du meme table -->
                 data:{'id':plak},
                 dataType:'json',
                 success:function(data){
-                    console.log('hello')
                     et.find('.etatVehicule').val(data.etat);
-
                 },
                 error:function(){
-
-
                 }
             });
-
         });
-
 });
 </script>
+
 {{-- table mission selection d'autres donnees --}}
-{{-- <script type="text/JavaScript">
+<script type="text/JavaScript">
     $(document).ready(function(){
 
-        $(document).on('change','#missio_id',function(){
-            let type_mission=$(this).val();
-            let et=$(this).parent().parent().parent();
+        $(document).on('change','.mission',function(){
+            let t_mission=$(this).val();
+            let etm=$(this).parent().parent().parent();
             $.ajax({
                 type:'get',
-                url:'{!! URL::to('findEtat') !!}',
-                data:{'id':type_mission},
+                url:'{!! URL::to('findEtatMission') !!}',
+                data:{'id':t_mission},
                 dataType:'json',
                 success:function(data){
-                    /* console.log(data)
-                    console.log(data.etat_mission) */
-                    et.find('#etat_mission').val(data.etat_mission);
-
+                    etm.find('.etat_mission').val(data.etat_mission);
                 },
                 error:function(){
-
-
                 }
             });
-
         });
-
 });
-</script> --}}
+</script>
 
 <script type="text/javascript">
 
